@@ -48,7 +48,6 @@ import org.apache.geode.CancelException;
 import org.apache.geode.DataSerializer;
 import org.apache.geode.Instantiator;
 import org.apache.geode.InternalGemFireError;
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.cache.CacheEvent;
 import org.apache.geode.cache.CacheException;
 import org.apache.geode.cache.InterestRegistrationEvent;
@@ -112,6 +111,7 @@ import org.apache.geode.internal.statistics.DummyStatisticsFactory;
 import org.apache.geode.security.AccessControl;
 import org.apache.geode.security.AuthenticationFailedException;
 import org.apache.geode.security.AuthenticationRequiredException;
+import org.apache.geode.statistics.StatisticsFactory;
 
 /**
  * Class <code>CacheClientNotifier</code> works on the server and manages client socket connections

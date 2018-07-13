@@ -42,7 +42,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.cache.CacheWriterException;
 import org.apache.geode.cache.DiskAccessException;
 import org.apache.geode.cache.DiskStore;
@@ -57,6 +56,7 @@ import org.apache.geode.internal.InternalDataSerializer;
 import org.apache.geode.internal.cache.Oplog.OPLOG_TYPE;
 import org.apache.geode.internal.cache.entries.AbstractDiskLRURegionEntry;
 import org.apache.geode.internal.cache.entries.DiskEntry;
+import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.test.dunit.ThreadUtils;
 import org.apache.geode.test.junit.categories.IntegrationTest;
 

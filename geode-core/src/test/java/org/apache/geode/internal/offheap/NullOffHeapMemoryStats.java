@@ -15,12 +15,13 @@
 package org.apache.geode.internal.offheap;
 
 import org.apache.geode.statistics.Statistics;
+import org.apache.geode.statistics.offheap.OffHeapStorageStats;
 
 /**
  * Null implementation of OffHeapMemoryStats for testing.
  *
  */
-public class NullOffHeapMemoryStats implements OffHeapMemoryStats {
+public class NullOffHeapMemoryStats implements OffHeapStorageStats {
   private boolean isClosed;
 
   public void incFreeMemory(long value) {}
@@ -119,7 +120,7 @@ public class NullOffHeapMemoryStats implements OffHeapMemoryStats {
   }
 
   @Override
-  public void initialize(OffHeapMemoryStats stats) {
+  public void initialize(OffHeapStorageStats stats) {
     stats.close();
   }
 

@@ -23,15 +23,18 @@ import java.util.List;
 import java.util.NavigableSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReferenceArray;
+import java.util.concurrent.atomic.LongAdder;
 
 import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.OutOfOffHeapMemoryException;
 import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.internal.logging.LogService;
+import org.apache.geode.statistics.offheap.OffHeapStorageStats;
 
 /**
  * Manages the free lists and slabs for a MemoryAllocator
@@ -250,12 +253,13 @@ public class FreeListManager {
   }
 
   void logOffHeapState(Logger lw, int chunkSize) {
-    OffHeapMemoryStats stats = this.ma.getStats();
+    OffHeapStorageStats stats = this.ma.getStats();
     lw.info("OutOfOffHeapMemory allocating size of " + chunkSize + ". allocated="
-        + this.allocatedSize.get() + " defragmentations=" + this.defragmentationCount.get()
-        + " objects=" + stats.getObjects() + " free=" + stats.getFreeMemory() + " fragments="
-        + stats.getFragments() + " largestFragment=" + stats.getLargestFragment()
-        + " fragmentation=" + stats.getFragmentation());
+        + this.allocatedSize.get() + " defragmentations=" + this.defragmentationCount.intValue());
+    //TODO all of this needs to be replaced by a tracking counter on the object
+//        + " objects=" + stats.getObjects() + " free=" + stats.getFreeMemory() + " fragments="
+//        + stats.getFragments() + " largestFragment=" + stats.getLargestFragment()
+//        + " fragmentation=" + stats.getFragmentation());
     logFragmentState(lw);
     logTinyState(lw);
     logHugeState(lw);
@@ -286,7 +290,7 @@ public class FreeListManager {
     }
   }
 
-  protected final AtomicInteger defragmentationCount = new AtomicInteger();
+  protected final LongAdder defragmentationCount = new LongAdder();
   /*
    * Set this to "true" to perform data integrity checks on allocated and reused Chunks. This may
    * clobber performance so turn on only when necessary.
@@ -363,12 +367,12 @@ public class FreeListManager {
    * returns false;
    */
   boolean defragment(int chunkSize) {
-    final long startDefragmentationTime = this.ma.getStats().startDefragmentation();
-    final int countPreSync = this.defragmentationCount.get();
+    final long startDefragmentationTime = System.nanoTime();
+    final int countPreSync = this.defragmentationCount.intValue();
     afterDefragmentationCountFetched();
     try {
       synchronized (this) {
-        if (this.defragmentationCount.get() != countPreSync) {
+        if (this.defragmentationCount.intValue() != countPreSync) {
           // someone else did a defragmentation while we waited on the sync.
           // So just return true causing the caller to retry the allocation.
           return true;
@@ -376,12 +380,14 @@ public class FreeListManager {
         boolean result = doDefragment(chunkSize);
 
         // Signal any waiters that a defragmentation happened.
-        this.defragmentationCount.incrementAndGet();
+        this.defragmentationCount.increment();
 
         return result;
       } // sync
     } finally {
-      this.ma.getStats().endDefragmentation(startDefragmentationTime);
+      final long endDefragmentation = System.nanoTime();
+      this.ma.getStats().incDefragmentationTime((endDefragmentation-startDefragmentationTime),
+          TimeUnit.NANOSECONDS);
     }
   }
 
@@ -782,7 +788,7 @@ public class FreeListManager {
   private void free(long addr, boolean updateStats) {
     int cSize = OffHeapStoredObject.getSize(addr);
     if (updateStats) {
-      OffHeapMemoryStats stats = this.ma.getStats();
+      OffHeapStorageStats stats = this.ma.getStats();
       stats.incObjects(-1);
       this.allocatedSize.addAndGet(-cSize);
       stats.incUsedMemory(-cSize);

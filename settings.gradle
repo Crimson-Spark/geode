@@ -1,3 +1,24 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'http://dl.bintray.com/kotlin/kotlin-eap'
+        }
+
+        mavenCentral()
+
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+
+        maven {
+            url 'http://dl.bintray.com/kotlin/kotlin-eap'
+        }
+
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+}
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -42,15 +63,17 @@ include 'geode-experimental-driver'
 include 'geode-protobuf-messages'
 include 'extensions/session-testing-war'
 include 'geode-concurrency-test'
+include 'geode-micrometer-stats'
 
 
 if (GradleVersion.current() < GradleVersion.version(minimumGradleVersion)) {
-  throw new GradleException('Running with unsupported Gradle Version. Use Gradle Wrapper or with Gradle version >= ' + minimumGradleVersion)
+    throw new GradleException('Running with unsupported Gradle Version. Use Gradle Wrapper or with Gradle version >= ' + minimumGradleVersion)
 }
 
 buildCache {
-  local {
-    enabled = true
-  }
+    local {
+        enabled = true
+    }
 }
+include 'geode-stats'
 

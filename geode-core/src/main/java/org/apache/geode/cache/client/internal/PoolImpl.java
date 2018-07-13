@@ -35,7 +35,6 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.CancelCriterion;
 import org.apache.geode.CancelException;
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.SystemFailure;
 import org.apache.geode.cache.CacheClosedException;
 import org.apache.geode.cache.NoSubscriptionServersAvailableException;
@@ -223,7 +222,8 @@ public class PoolImpl implements InternalPool {
     }
     this.cache = cache;
     this.securityLogWriter = this.internalDistributedSystem.getSecurityInternalLogWriter();
-    if (!this.internalDistributedSystem.getConfig().getStatisticSamplingEnabled() && this.statisticInterval > 0) {
+    if (!this.internalDistributedSystem.getConfig().getStatisticSamplingEnabled()
+        && this.statisticInterval > 0) {
       logger.info(LocalizedMessage.create(
           LocalizedStrings.PoolImpl_STATISTIC_SAMPLING_MUST_BE_ENABLED_FOR_SAMPLING_RATE_OF_0_TO_TAKE_AFFECT,
           this.statisticInterval));
@@ -247,10 +247,12 @@ public class PoolImpl implements InternalPool {
             + (isEmpty(serverGroup) ? "[any servers]" : "[" + getServerGroup() + "]"));
 
     source = getSourceImpl(((PoolFactoryImpl.PoolAttributes) attributes).locatorCallback);
-    endpointManager = new EndpointManagerImpl(name, this.internalDistributedSystem, this.cancelCriterion, this.stats);
-    connectionFactory = new ConnectionFactoryImpl(source, endpointManager, this.internalDistributedSystem,
-        socketBufferSize, socketConnectTimeout, readTimeout, proxyId, this.cancelCriterion,
-        usedByGateway, gatewaySender, pingInterval, multiuserSecureModeEnabled, this);
+    endpointManager = new EndpointManagerImpl(name, this.internalDistributedSystem,
+        this.cancelCriterion, this.stats);
+    connectionFactory =
+        new ConnectionFactoryImpl(source, endpointManager, this.internalDistributedSystem,
+            socketBufferSize, socketConnectTimeout, readTimeout, proxyId, this.cancelCriterion,
+            usedByGateway, gatewaySender, pingInterval, multiuserSecureModeEnabled, this);
     if (subscriptionEnabled) {
       queueManager = new QueueManagerImpl(this, endpointManager, source, connectionFactory,
           subscriptionRedundancyLevel, pingInterval, securityLogWriter, proxyId);
@@ -351,7 +353,8 @@ public class PoolImpl implements InternalPool {
     }
 
 
-    if (this.statisticInterval > 0 && this.internalDistributedSystem.getConfig().getStatisticSamplingEnabled()) {
+    if (this.statisticInterval > 0
+        && this.internalDistributedSystem.getConfig().getStatisticSamplingEnabled()) {
       backgroundProcessor.scheduleWithFixedDelay(new PublishClientStatsTask(), statisticInterval,
           statisticInterval, TimeUnit.MILLISECONDS);
     }

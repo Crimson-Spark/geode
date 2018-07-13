@@ -34,6 +34,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import org.apache.geode.distributed.internal.DistributionConfig;
+import org.apache.geode.statistics.offheap.OffHeapStorageStats;
 import org.apache.geode.test.junit.categories.UnitTest;
 
 @Category(UnitTest.class)
@@ -41,7 +42,7 @@ public class FreeListManagerTest {
 
   private final int DEFAULT_SLAB_SIZE = 1024 * 1024 * 5;
   private final MemoryAllocatorImpl ma = mock(MemoryAllocatorImpl.class);
-  private final OffHeapMemoryStats stats = mock(OffHeapMemoryStats.class);
+  private final OffHeapStorageStats stats = mock(OffHeapStorageStats.class);
   private TestableFreeListManager freeListManager;
 
   @Before

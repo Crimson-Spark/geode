@@ -31,7 +31,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.geode.CancelCriterion;
 import org.apache.geode.LogWriter;
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.CacheFactory;
 import org.apache.geode.cache.client.ClientCache;
@@ -44,6 +43,7 @@ import org.apache.geode.internal.ClassPathLoader;
 import org.apache.geode.internal.i18n.LocalizedStrings;
 import org.apache.geode.internal.tcp.ConnectionTable;
 import org.apache.geode.internal.util.IOUtils;
+import org.apache.geode.statistics.StatisticsManager;
 
 /**
  * A "connection" to a GemFire distributed system. A <code>DistributedSystem</code> is created by
@@ -77,8 +77,7 @@ import org.apache.geode.internal.util.IOUtils;
  *
  * @since GemFire 3.0
  */
-//public abstract class DistributedSystem implements StatisticsFactory {
-public abstract class DistributedSystem{
+public abstract class DistributedSystem {
 
   /**
    * The instances of <code>DistributedSystem</code> created in this VM. Presently only one connect
@@ -221,10 +220,10 @@ public abstract class DistributedSystem{
       if (size == 0) {
         existingSystems = Collections.singletonList(newSystem);
       } else {
-        ArrayList l = new ArrayList(size + 1);
-        l.addAll(existingSystems);
-        l.add(0, newSystem);
-        existingSystems = Collections.unmodifiableList(l);
+        ArrayList arrayList = new ArrayList(size + 1);
+        arrayList.add(newSystem);
+        arrayList.addAll(existingSystems);
+        existingSystems = Collections.unmodifiableList(arrayList);
       }
     }
   }
@@ -751,6 +750,5 @@ public abstract class DistributedSystem{
    */
   public abstract DistributedSystem getReconnectedSystem();
 
-  public abstract StatisticsFactory getStatisticsFactory();
-
+  protected abstract StatisticsManager getStatisticsManager();
 }

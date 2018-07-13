@@ -14,14 +14,14 @@
  */
 package org.apache.geode.internal.cache.control;
 
+import org.apache.geode.distributed.internal.PoolStatHelper;
+import org.apache.geode.distributed.internal.QueueStatHelper;
+import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 import org.apache.geode.statistics.StatisticDescriptor;
 import org.apache.geode.statistics.Statistics;
 import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.statistics.StatisticsType;
 import org.apache.geode.statistics.StatisticsTypeFactory;
-import org.apache.geode.distributed.internal.PoolStatHelper;
-import org.apache.geode.distributed.internal.QueueStatHelper;
-import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 
 /**
  * Contains methods for manipulating resource manager statistics.

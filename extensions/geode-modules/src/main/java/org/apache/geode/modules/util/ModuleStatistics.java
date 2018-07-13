@@ -14,13 +14,13 @@
  */
 package org.apache.geode.modules.util;
 
+import org.apache.geode.distributed.DistributedSystem;
+import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 import org.apache.geode.statistics.StatisticDescriptor;
 import org.apache.geode.statistics.Statistics;
 import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.statistics.StatisticsType;
 import org.apache.geode.statistics.StatisticsTypeFactory;
-import org.apache.geode.distributed.DistributedSystem;
-import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 
 /**
  * Statistics for modules.

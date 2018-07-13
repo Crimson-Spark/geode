@@ -137,11 +137,6 @@ public class AsyncEventQueueImpl implements AsyncEventQueue {
     return this.sender;
   }
 
-  public AsyncEventQueueStats getStatistics() {
-    AbstractGatewaySender abstractSender = (AbstractGatewaySender) this.sender;
-    return ((AsyncEventQueueStats) abstractSender.getStatistics());
-  }
-
   @Override
   public boolean equals(Object obj) {
     if (obj == null) {

@@ -303,7 +303,8 @@ public class HeapMemoryMonitor implements NotificationListener, MemoryMonitor {
     try {
       sampler.waitForInitialization();
       String tenuredPoolName = getTenuredMemoryPoolMXBean().getName();
-      List list = this.cache.getInternalDistributedSystem().getInternalDistributedSystemStats().getStatsList();
+      List list = this.cache.getInternalDistributedSystem().getInternalDistributedSystemStats()
+          .getStatsList();
       for (Object o : list) {
         if (o instanceof StatisticsImpl) {
           StatisticsImpl statisticsImpl = (StatisticsImpl) o;
@@ -311,7 +312,8 @@ public class HeapMemoryMonitor implements NotificationListener, MemoryMonitor {
               && statisticsImpl.getType().getName().contains("PoolStats")) {
             sampler.addLocalStatListener(this.statListener, statisticsImpl, "currentUsedMemory");
             if (this.cache.getLoggerI18n().fineEnabled()) {
-              this.cache.getLoggerI18n().fine("Registered stat listener for " + statisticsImpl.getTextId());
+              this.cache.getLoggerI18n()
+                  .fine("Registered stat listener for " + statisticsImpl.getTextId());
             }
 
             return true;

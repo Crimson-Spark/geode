@@ -47,8 +47,6 @@ import org.junit.experimental.categories.Category;
 import org.junit.rules.TemporaryFolder;
 import org.junit.rules.TestName;
 
-import org.apache.geode.statistics.Statistics;
-import org.apache.geode.statistics.StatisticsType;
 import org.apache.geode.distributed.DistributedSystem;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.internal.GemFireVersion;
@@ -61,6 +59,8 @@ import org.apache.geode.internal.statistics.platform.OsStatisticsFactory;
 import org.apache.geode.internal.statistics.platform.ProcessStats;
 import org.apache.geode.internal.stats50.VMStats50;
 import org.apache.geode.internal.util.StopWatch;
+import org.apache.geode.statistics.Statistics;
+import org.apache.geode.statistics.StatisticsType;
 import org.apache.geode.test.junit.categories.FlakyTest;
 import org.apache.geode.test.junit.categories.IntegrationTest;
 import org.apache.geode.test.junit.categories.StatisticsTest;
@@ -528,11 +528,11 @@ public class GemFireStatSamplerIntegrationTest extends StatSamplerTestCase {
 
   @Override
   protected StatisticsManager getStatisticsManager() {
-    return ((InternalDistributedSystem)this.distributedSystem).getInternalDistributedSystemStats();
+    return ((InternalDistributedSystem) this.distributedSystem).getInternalDistributedSystemStats();
   }
 
   protected OsStatisticsFactory getOsStatisticsFactory() {
-    return ((InternalDistributedSystem)this.distributedSystem).getInternalDistributedSystemStats();
+    return ((InternalDistributedSystem) this.distributedSystem).getInternalDistributedSystemStats();
   }
 
   private GemFireStatSampler getGemFireStatSampler() {

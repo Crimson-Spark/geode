@@ -14,12 +14,12 @@
  */
 package org.apache.geode.internal.cache.eviction;
 
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.cache.EvictionAction;
 import org.apache.geode.cache.EvictionAlgorithm;
 import org.apache.geode.cache.EvictionAttributes;
 import org.apache.geode.cache.util.ObjectSizer;
 import org.apache.geode.internal.cache.BucketRegion;
+import org.apache.geode.statistics.StatisticsFactory;
 
 /**
  * Eviction controllers that extend this class evict the least recently used (LRU) entry in the

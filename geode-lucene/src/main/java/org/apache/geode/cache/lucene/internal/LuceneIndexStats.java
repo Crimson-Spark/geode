@@ -18,13 +18,13 @@ import static org.apache.geode.distributed.internal.DistributionStats.getStatTim
 
 import java.util.function.IntSupplier;
 
+import org.apache.geode.internal.CopyOnWriteHashSet;
+import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 import org.apache.geode.statistics.StatisticDescriptor;
 import org.apache.geode.statistics.Statistics;
 import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.statistics.StatisticsType;
 import org.apache.geode.statistics.StatisticsTypeFactory;
-import org.apache.geode.internal.CopyOnWriteHashSet;
-import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 
 public class LuceneIndexStats {
   // statistics type

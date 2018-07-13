@@ -56,8 +56,9 @@ public class ManagementAdapterTest {
   @Before
   public void before() {
     cache = serverRule.getCache();
-    doReturn(new DiskStoreStats(cache.getInternalDistributedSystem().getStatisticsFactory(), "disk-stats")).when(diskStore)
-        .getStats();
+    doReturn(new DiskStoreStats(cache.getInternalDistributedSystem().getStatisticsFactory(),
+        "disk-stats")).when(diskStore)
+            .getStats();
     doReturn(new File[] {}).when(diskStore).getDiskDirs();
   }
 

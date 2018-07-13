@@ -16,11 +16,6 @@ package org.apache.geode.cache.query.internal.cq;
 
 import org.apache.logging.log4j.Logger;
 
-import org.apache.geode.statistics.StatisticDescriptor;
-import org.apache.geode.statistics.Statistics;
-import org.apache.geode.statistics.StatisticsFactory;
-import org.apache.geode.statistics.StatisticsType;
-import org.apache.geode.statistics.StatisticsTypeFactory;
 import org.apache.geode.cache.query.CqException;
 import org.apache.geode.cache.query.CqQuery;
 import org.apache.geode.cache.query.internal.DefaultQueryService;
@@ -29,6 +24,11 @@ import org.apache.geode.internal.cache.FilterProfile;
 import org.apache.geode.internal.cache.InternalCache;
 import org.apache.geode.internal.logging.LogService;
 import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
+import org.apache.geode.statistics.StatisticDescriptor;
+import org.apache.geode.statistics.Statistics;
+import org.apache.geode.statistics.StatisticsFactory;
+import org.apache.geode.statistics.StatisticsType;
+import org.apache.geode.statistics.StatisticsTypeFactory;
 
 /**
  * This class tracks GemFire statistics related to CqService. Specifically the following statistics

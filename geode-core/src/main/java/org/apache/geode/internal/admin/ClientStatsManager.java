@@ -20,9 +20,6 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 
-import org.apache.geode.internal.statistics.InternalDistributedSystemStats;
-import org.apache.geode.statistics.Statistics;
-import org.apache.geode.statistics.StatisticsType;
 import org.apache.geode.cache.CacheWriterException;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.internal.PoolImpl;
@@ -37,6 +34,9 @@ import org.apache.geode.internal.cache.GemFireCacheImpl;
 import org.apache.geode.internal.cache.InternalCache;
 import org.apache.geode.internal.i18n.LocalizedStrings;
 import org.apache.geode.internal.offheap.annotations.Released;
+import org.apache.geode.internal.statistics.InternalDistributedSystemStats;
+import org.apache.geode.statistics.Statistics;
+import org.apache.geode.statistics.StatisticsType;
 
 /**
  * This class publishes the client statistics using the admin region.
@@ -127,9 +127,9 @@ public class ClientStatsManager {
       return false;
     }
     LogWriterI18n logger = currentCache.getLoggerI18n();
-    InternalDistributedSystem distributedSystem = (InternalDistributedSystem) currentCache.getDistributedSystem();
-    InternalDistributedSystemStats
-        internalDistributedSystemStats =
+    InternalDistributedSystem distributedSystem =
+        (InternalDistributedSystem) currentCache.getDistributedSystem();
+    InternalDistributedSystemStats internalDistributedSystemStats =
         distributedSystem.getInternalDistributedSystemStats();
     if (currentCache.isClosed()) {
       return false;

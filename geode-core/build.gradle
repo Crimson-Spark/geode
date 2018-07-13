@@ -38,7 +38,7 @@ dependencies {
   antlr 'antlr:antlr:' + project.'antlr.version'
 
   // External
-  compile group: 'io.micrometer', name: 'micrometer-core', version: '1.0.5'
+  compile project(':geode-micrometer-stats')
 
   compileOnly files("${System.getProperty('java.home')}/../lib/tools.jar")
   testCompile files("${System.getProperty('java.home')}/../lib/tools.jar")

@@ -14,9 +14,9 @@
  */
 package org.apache.geode.internal.statistics;
 
+import org.apache.geode.internal.statistics.platform.OsStatisticsFactory;
 import org.apache.geode.statistics.Statistics;
 import org.apache.geode.statistics.StatisticsType;
-import org.apache.geode.internal.statistics.platform.OsStatisticsFactory;
 
 /**
  * @since GemFire 7.0

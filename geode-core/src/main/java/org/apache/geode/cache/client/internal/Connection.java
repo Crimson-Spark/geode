@@ -36,8 +36,6 @@ public interface Connection {
 
   ByteBuffer getCommBuffer() throws SocketException;
 
-  ConnectionStats getStats();
-
   /**
    * Forcefully close the resources used by this connection. This should be called if the connection
    * or the server dies.

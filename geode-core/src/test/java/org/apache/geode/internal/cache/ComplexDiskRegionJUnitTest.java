@@ -20,8 +20,8 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.cache.Scope;
+import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.test.junit.categories.IntegrationTest;
 
 /**

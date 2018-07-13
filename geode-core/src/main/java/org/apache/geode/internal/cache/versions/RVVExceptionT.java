@@ -21,7 +21,6 @@ import java.util.NoSuchElementException;
 import java.util.TreeSet;
 
 import org.apache.geode.internal.InternalDataSerializer;
-import org.apache.geode.internal.cache.versions.RVVException.ReceivedVersionsIterator;
 
 /**
  * This subclass of RVVException is the original class that uses TreeSets to hold received versions.

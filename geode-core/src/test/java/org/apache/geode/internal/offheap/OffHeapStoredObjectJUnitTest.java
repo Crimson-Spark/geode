@@ -46,6 +46,7 @@ import org.apache.geode.internal.cache.CachePerfStats;
 import org.apache.geode.internal.cache.EntryEventImpl;
 import org.apache.geode.internal.cache.RegionEntryContext;
 import org.apache.geode.internal.offheap.MemoryBlock.State;
+import org.apache.geode.statistics.offheap.OffHeapStorageStats;
 import org.apache.geode.test.junit.categories.UnitTest;
 
 @Category(UnitTest.class)
@@ -74,7 +75,7 @@ public class OffHeapStoredObjectJUnitTest extends AbstractStoredObjectTestBase {
   @Before
   public void setUp() {
     OutOfOffHeapMemoryListener ooohml = mock(OutOfOffHeapMemoryListener.class);
-    OffHeapMemoryStats stats = mock(OffHeapMemoryStats.class);
+    OffHeapStorageStats stats = mock(OffHeapStorageStats.class);
 
     ma = MemoryAllocatorImpl.create(ooohml, stats, 3, OffHeapStorage.MIN_SLAB_SIZE * 3,
         OffHeapStorage.MIN_SLAB_SIZE);

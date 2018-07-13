@@ -86,7 +86,8 @@ public class QueueManagerJUnitTest {
     distributedSystem = DistributedSystem.connect(properties);
     stats = new PoolStats(distributedSystem.getStatisticsFactory(), "QueueManagerJUnitTest");
     pool = new DummyPool();
-    endpoints = new EndpointManagerImpl("pool", distributedSystem, distributedSystem.getCancelCriterion(), pool.getStats());
+    endpoints = new EndpointManagerImpl("pool", distributedSystem,
+        distributedSystem.getCancelCriterion(), pool.getStats());
     source = new DummySource();
     factory = new DummyFactory();
     background = Executors.newSingleThreadScheduledExecutor();

@@ -27,13 +27,14 @@ import org.junit.contrib.java.lang.system.RestoreSystemProperties;
 import org.junit.experimental.categories.Category;
 
 import org.apache.geode.OutOfOffHeapMemoryException;
-import org.apache.geode.statistics.StatisticsFactory;
 import org.apache.geode.distributed.DistributedSystem;
 import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.distributed.internal.DistributionStats;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.distributed.internal.InternalLocator;
 import org.apache.geode.internal.statistics.LocalStatisticsFactory;
+import org.apache.geode.statistics.StatisticsFactory;
+import org.apache.geode.statistics.offheap.OffHeapStorageStats;
 import org.apache.geode.test.junit.categories.UnitTest;
 
 @Category(UnitTest.class)
@@ -173,7 +174,7 @@ public class OffHeapStorageJUnitTest {
     MemoryAllocator ma =
         OffHeapStorage.basicCreateOffHeapStorage(localStatsFactory, 1024 * 1024, ooohml);
     try {
-      OffHeapMemoryStats stats = ma.getStats();
+      OffHeapStorageStats stats = ma.getStats();
       assertNotNull(stats.getStats());
       assertEquals(1024 * 1024, stats.getFreeMemory());
       assertEquals(1024 * 1024, stats.getMaxMemory());

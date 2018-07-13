@@ -235,11 +235,6 @@ public class ConnectionImpl implements Connection {
     return in;
   }
 
-
-  public ConnectionStats getStats() {
-    return endpoint.getStats();
-  }
-
   @Override
   public String toString() {
     return "Connection[" + endpoint + "]@" + this.hashCode();

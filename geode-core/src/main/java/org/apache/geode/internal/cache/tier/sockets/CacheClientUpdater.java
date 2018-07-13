@@ -37,10 +37,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.geode.CancelException;
 import org.apache.geode.DataSerializer;
 import org.apache.geode.InvalidDeltaException;
-import org.apache.geode.statistics.StatisticDescriptor;
-import org.apache.geode.statistics.Statistics;
-import org.apache.geode.statistics.StatisticsType;
-import org.apache.geode.statistics.StatisticsTypeFactory;
 import org.apache.geode.cache.EntryNotFoundException;
 import org.apache.geode.cache.InterestResultPolicy;
 import org.apache.geode.cache.Operation;
@@ -56,7 +52,6 @@ import org.apache.geode.cache.query.internal.cq.CqService;
 import org.apache.geode.distributed.DistributedSystem;
 import org.apache.geode.distributed.internal.ClusterDistributionManager;
 import org.apache.geode.distributed.internal.DistributionConfig;
-import org.apache.geode.distributed.internal.DistributionStats;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.distributed.internal.InternalDistributedSystem.DisconnectListener;
 import org.apache.geode.distributed.internal.ServerLocation;
@@ -88,7 +83,6 @@ import org.apache.geode.internal.logging.log4j.LogMarker;
 import org.apache.geode.internal.net.SocketCreator;
 import org.apache.geode.internal.offheap.annotations.Released;
 import org.apache.geode.internal.sequencelog.EntryLogger;
-import org.apache.geode.internal.statistics.StatisticsTypeFactoryImpl;
 import org.apache.geode.security.AuthenticationFailedException;
 import org.apache.geode.security.AuthenticationRequiredException;
 import org.apache.geode.security.GemFireSecurityException;
@@ -1833,84 +1827,6 @@ public class CacheClientUpdater extends Thread implements ClientUpdater, Disconn
       logger.info(LocalizedMessage.create(
           LocalizedStrings.Connection_SOCKET_0_IS_1_INSTEAD_OF_THE_REQUESTED_2,
           new Object[] {type + " buffer size", actualBufferSize, requestedBufferSize}));
-    }
-  }
-
-  /**
-   * Stats for a CacheClientUpdater. Currently the only thing measured are incoming bytes on the
-   * wire
-   *
-   * @since GemFire 5.7
-   */
-  public static class CCUStats implements MessageStats {
-
-    private static final StatisticsType type;
-    private static final int messagesBeingReceivedId;
-    private static final int messageBytesBeingReceivedId;
-    private static final int receivedBytesId;
-
-    static {
-      StatisticsTypeFactory f = StatisticsTypeFactoryImpl.singleton();
-      type = f.createType("CacheClientUpdaterStats", "Statistics about incoming subscription data",
-          new StatisticDescriptor[] {
-              f.createLongCounter("receivedBytes",
-                  "Total number of bytes received from the server.", "bytes"),
-              f.createIntGauge("messagesBeingReceived",
-                  "Current number of message being received off the network or being processed after reception.",
-                  "messages"),
-              f.createLongGauge("messageBytesBeingReceived",
-                  "Current number of bytes consumed by messages being received or processed.",
-                  "bytes"),});
-      receivedBytesId = type.nameToId("receivedBytes");
-      messagesBeingReceivedId = type.nameToId("messagesBeingReceived");
-      messageBytesBeingReceivedId = type.nameToId("messageBytesBeingReceived");
-    }
-
-    // instance fields
-    private final Statistics stats;
-
-    CCUStats(DistributedSystem distributedSystem, ServerLocation location) {
-      // no need for atomic since only a single thread will be writing these
-      this.stats = distributedSystem.getStatisticsFactory().createStatistics(type, "CacheClientUpdater-" + location);
-    }
-
-    public void close() {
-      this.stats.close();
-    }
-
-    @Override
-    public void incReceivedBytes(long v) {
-      this.stats.incLong(receivedBytesId, v);
-    }
-
-    @Override
-    public void incSentBytes(long v) {
-      // noop since we never send messages
-    }
-
-    @Override
-    public void incMessagesBeingReceived(int bytes) {
-      this.stats.incInt(messagesBeingReceivedId, 1);
-      if (bytes > 0) {
-        this.stats.incLong(messageBytesBeingReceivedId, bytes);
-      }
-    }
-
-    @Override
-    public void decMessagesBeingReceived(int bytes) {
-      this.stats.incInt(messagesBeingReceivedId, -1);
-      if (bytes > 0) {
-        this.stats.incLong(messageBytesBeingReceivedId, -bytes);
-      }
-    }
-
-    /**
-     * Returns the current time (ns).
-     *
-     * @return the current time (ns)
-     */
-    public long startTime() {
-      return DistributionStats.getStatTime();
     }
   }
 

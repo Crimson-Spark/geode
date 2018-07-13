@@ -218,7 +218,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
             try {
               int j = 0;
               HashSet origVals = new HashSet();
-              for (Iterator i = testKeysSet.iterator(); i.hasNext(); ) {
+              for (Iterator i = testKeysSet.iterator(); i.hasNext();) {
                 Integer val = new Integer(j++);
                 origVals.add(val);
                 region.put(i.next(), val);
@@ -268,8 +268,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
     SerializableCallable checkStatsOnClient = new SerializableCallable("checkStatsOnClient") {
       public Object call() throws Exception {
         // checks for the aggregate stats
-        InternalDistributedSystem
-            internalDistributedSystem =
+        InternalDistributedSystem internalDistributedSystem =
             (InternalDistributedSystem) cache.getDistributedSystem();
         FunctionServiceStats functionServiceStats =
             internalDistributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
@@ -306,8 +305,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
     SerializableCallable checkStatsOnServer = new SerializableCallable("checkStatsOnClient") {
       public Object call() throws Exception {
         // checks for the aggregate stats
-        InternalDistributedSystem
-            internalDistributedSystem =
+        InternalDistributedSystem internalDistributedSystem =
             (InternalDistributedSystem) cache.getDistributedSystem();
         FunctionServiceStats functionServiceStats =
             internalDistributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
@@ -512,8 +510,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
     SerializableCallable checkStatsOnClient = new SerializableCallable("checkStatsOnClient") {
       public Object call() throws Exception {
         // checks for the aggregate stats
-        InternalDistributedSystem
-            internalDistributedSystem =
+        InternalDistributedSystem internalDistributedSystem =
             (InternalDistributedSystem) cache.getDistributedSystem();
         FunctionServiceStats functionServiceStats =
             internalDistributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
@@ -607,8 +604,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
     SerializableCallable checkStatsOnClient = new SerializableCallable("checkStatsOnClient") {
       public Object call() throws Exception {
         // checks for the aggregate stats
-        InternalDistributedSystem
-            internalDistributedSystem =
+        InternalDistributedSystem internalDistributedSystem =
             (InternalDistributedSystem) cache.getDistributedSystem();
         FunctionServiceStats functionServiceStats =
             internalDistributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
@@ -643,8 +639,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
     SerializableCallable checkStatsOnServer = new SerializableCallable("checkStatsOnClient") {
       public Object call() throws Exception {
         // checks for the aggregate stats
-        InternalDistributedSystem
-            internalDistributedSystem =
+        InternalDistributedSystem internalDistributedSystem =
             (InternalDistributedSystem) cache.getDistributedSystem();
         FunctionServiceStats functionServiceStats =
             internalDistributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
@@ -790,7 +785,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
           testKeys.add("execKey-" + i);
         }
         int j = 0;
-        for (Iterator i = testKeys.iterator(); i.hasNext(); ) {
+        for (Iterator i = testKeys.iterator(); i.hasNext();) {
           Integer val = new Integer(j++);
           pr.put(i.next(), val);
         }
@@ -1114,8 +1109,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
 
     member1.invoke(new SerializableCallable("checkFunctionExecutionStatsForMember1") {
       public Object call() throws Exception {
-        FunctionServiceStats
-            functionServiceStats =
+        FunctionServiceStats functionServiceStats =
             distributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
         waitNoFunctionsRunning(functionServiceStats);
 
@@ -1138,8 +1132,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
     SerializableCallable checkFunctionExecutionStatsForOtherMember =
         new SerializableCallable("checkFunctionExecutionStatsForOtherMember") {
           public Object call() throws Exception {
-            FunctionServiceStats
-                functionServiceStats =
+            FunctionServiceStats functionServiceStats =
                 distributedSystem.getInternalDistributedSystemStats().getFunctionServiceStats();
             waitNoFunctionsRunning(functionServiceStats);
 
@@ -1238,7 +1231,7 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
           testKeys.add("execKey-" + i);
         }
         int j = 0;
-        for (Iterator i = testKeys.iterator(); i.hasNext(); ) {
+        for (Iterator i = testKeys.iterator(); i.hasNext();) {
           Integer key = new Integer(j++);
           pr.put(key, i.next());
         }
@@ -1289,7 +1282,8 @@ public class FunctionServiceStatsDUnitTest extends PRClientServerTestBase {
             noOfExecutionCalls_Aggregate++;
             noOfExecutionExceptions_Aggregate++;
             FunctionServiceStats functionServiceStats =
-                ((InternalDistributedSystem) getCache().getDistributedSystem()).getInternalDistributedSystemStats()
+                ((InternalDistributedSystem) getCache().getDistributedSystem())
+                    .getInternalDistributedSystemStats()
                     .getFunctionServiceStats();
             assertEquals(noOfExecutionCalls_Aggregate,
                 functionServiceStats.getFunctionExecutionCalls());

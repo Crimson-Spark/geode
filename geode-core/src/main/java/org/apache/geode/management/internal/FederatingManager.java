@@ -58,6 +58,7 @@ import org.apache.geode.management.ManagementException;
  * controls the JMX server endpoints for JMX clients to connect, such as an RMI server.
  *
  * The FederatingManager is only appropriate for a peer or server in a GemFire distributed system.
+ *
  * @since GemFire 7.0
  */
 public class FederatingManager extends Manager {
@@ -91,8 +92,8 @@ public class FederatingManager extends Manager {
    * @param service SystemManagement Service
    */
   public FederatingManager(MBeanJMXAdapter jmxAdapter, ManagementResourceRepo repo,
-                           InternalDistributedSystem system, SystemManagementService service,
-                           InternalCache cache) {
+      InternalDistributedSystem system, SystemManagementService service,
+      InternalCache cache) {
     super(repo, system, cache);
     this.service = service;
     this.proxyFactory = new MBeanProxyFactory(jmxAdapter, service);
@@ -249,7 +250,7 @@ public class FederatingManager extends Manager {
    * listener
    */
   public void suspectMember(DistributedMember member, InternalDistributedMember whoSuspected,
-                            String reason) {
+      String reason) {
     service.memberSuspect((InternalDistributedMember) member, whoSuspected, reason);
   }
 
@@ -507,6 +508,7 @@ public class FederatingManager extends Manager {
 
   /**
    * This will return the last updated time of the proxyMBean
+   *
    * @param objectName {@link javax.management.ObjectName} of the MBean
    * @return last updated time of the proxy
    */
@@ -518,6 +520,7 @@ public class FederatingManager extends Manager {
    * Find a particular proxy instance for a {@link javax.management.ObjectName} , {@link
    * org.apache.geode.distributed.DistributedMember} and interface class If the proxy interface does
    * not implement the given interface class a {@link java.lang.ClassCastException}. will be thrown
+   *
    * @param objectName {@link javax.management.ObjectName} of the MBean
    * @param interfaceClass interface class implemented by proxy
    * @return an instance of proxy exposing the given interface
@@ -528,6 +531,7 @@ public class FederatingManager extends Manager {
 
   /**
    * Find a set of proxies given a {@link org.apache.geode.distributed.DistributedMember}
+   *
    * @param member {@link org.apache.geode.distributed.DistributedMember}
    * @return a set of {@link javax.management.ObjectName}
    */

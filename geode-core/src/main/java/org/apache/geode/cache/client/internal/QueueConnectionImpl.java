@@ -159,10 +159,6 @@ public class QueueConnectionImpl implements Connection {
     return getConnection().getInputStream();
   }
 
-  public ConnectionStats getStats() {
-    return getEndpoint().getStats();
-  }
-
   public Object execute(Op op) throws Exception {
     return getConnection().execute(op);
   }

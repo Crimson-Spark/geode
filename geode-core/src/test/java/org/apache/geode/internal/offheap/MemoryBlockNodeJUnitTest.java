@@ -40,6 +40,7 @@ import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.internal.DSCODE;
 import org.apache.geode.internal.cache.EntryEventImpl;
 import org.apache.geode.internal.offheap.MemoryBlock.State;
+import org.apache.geode.statistics.offheap.OffHeapStorageStats;
 import org.apache.geode.test.junit.categories.UnitTest;
 
 @Category(UnitTest.class)
@@ -47,7 +48,7 @@ public class MemoryBlockNodeJUnitTest {
 
   private MemoryAllocatorImpl ma;
   private OutOfOffHeapMemoryListener ooohml;
-  private OffHeapMemoryStats stats;
+  private OffHeapStorageStats stats;
   private Slab[] slabs = {new SlabImpl((int) OffHeapStorage.MIN_SLAB_SIZE),
       new SlabImpl((int) OffHeapStorage.MIN_SLAB_SIZE * 2)};
   private StoredObject storedObject = null;
@@ -68,7 +69,7 @@ public class MemoryBlockNodeJUnitTest {
   @Before
   public void setUp() {
     ooohml = mock(OutOfOffHeapMemoryListener.class);
-    stats = mock(OffHeapMemoryStats.class);
+    stats = mock(OffHeapStorageStats.class);
     ma = (MemoryAllocatorImpl) MemoryAllocatorImpl.createForUnitTest(ooohml, stats, slabs);
   }
 

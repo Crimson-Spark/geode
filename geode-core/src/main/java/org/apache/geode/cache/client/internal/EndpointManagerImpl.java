@@ -39,8 +39,7 @@ public class EndpointManagerImpl implements EndpointManager {
   private static final Logger logger = LogService.getLogger();
 
   private volatile Map<ServerLocation, Endpoint> endpointMap = Collections.emptyMap();
-  private final Map/* <ServerLocation, ConnectionStats> */<ServerLocation, ConnectionStats>
-      statMap =
+  private final Map/* <ServerLocation, ConnectionStats> */<ServerLocation, ConnectionStats> statMap =
       new HashMap<ServerLocation, ConnectionStats>();
   private final DistributedSystem distributedSystem;
   private final String poolName;
@@ -49,7 +48,7 @@ public class EndpointManagerImpl implements EndpointManager {
   private final PoolStats poolStats;
 
   public EndpointManagerImpl(String poolName, DistributedSystem ds, CancelCriterion cancelCriterion,
-                             PoolStats poolStats) {
+      PoolStats poolStats) {
     this.distributedSystem = ds;
     this.poolName = poolName;
     this.cancelCriterion = cancelCriterion;
@@ -183,7 +182,7 @@ public class EndpointManagerImpl implements EndpointManager {
    * @see org.apache.geode.cache.client.internal.EndpointManager#close()
    */
   public synchronized void close() {
-    for (Iterator<ConnectionStats> itr = statMap.values().iterator(); itr.hasNext(); ) {
+    for (Iterator<ConnectionStats> itr = statMap.values().iterator(); itr.hasNext();) {
       ConnectionStats stats = itr.next();
       stats.close();
     }
@@ -227,9 +226,10 @@ public class EndpointManagerImpl implements EndpointManager {
       }
       if (stats == null) {
         stats =
-            new ConnectionStats(distributedSystem.getStatisticsFactory(), statName, this.poolStats/*
-             * , this.gatewayStats
-             */);
+            new ConnectionStats(distributedSystem.getStatisticsFactory(), statName,
+                this.poolStats/*
+                               * , this.gatewayStats
+                               */);
       }
       statMap.put(location, stats);
     }
@@ -271,21 +271,21 @@ public class EndpointManagerImpl implements EndpointManager {
     }
 
     public void endpointCrashed(Endpoint endpoint) {
-      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext(); ) {
+      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext();) {
         EndpointManager.EndpointListener listener = itr.next();
         listener.endpointCrashed(endpoint);
       }
     }
 
     public void endpointNoLongerInUse(Endpoint endpoint) {
-      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext(); ) {
+      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext();) {
         EndpointManager.EndpointListener listener = itr.next();
         listener.endpointNoLongerInUse(endpoint);
       }
     }
 
     public void endpointNowInUse(Endpoint endpoint) {
-      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext(); ) {
+      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext();) {
         EndpointManager.EndpointListener listener = itr.next();
         if (!(listener instanceof PdxRegistryRecoveryListener)) {
           listener.endpointNowInUse(endpoint);
@@ -294,7 +294,7 @@ public class EndpointManagerImpl implements EndpointManager {
     }
 
     public void clearPdxRegistry(Endpoint endpoint) {
-      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext(); ) {
+      for (Iterator<EndpointListener> itr = endpointListeners.iterator(); itr.hasNext();) {
         EndpointManager.EndpointListener listener = itr.next();
         if (listener instanceof PdxRegistryRecoveryListener) {
           listener.endpointNowInUse(endpoint);
