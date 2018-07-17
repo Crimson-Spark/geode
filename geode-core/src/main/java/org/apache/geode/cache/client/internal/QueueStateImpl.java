@@ -31,6 +31,7 @@ import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.RegionDestroyedException;
 import org.apache.geode.cache.client.internal.PoolImpl.PoolTask;
+import org.apache.geode.cache.client.internal.operations.PrimaryAckOp;
 import org.apache.geode.internal.cache.ClientServerObserver;
 import org.apache.geode.internal.cache.ClientServerObserverHolder;
 import org.apache.geode.internal.cache.EventID;

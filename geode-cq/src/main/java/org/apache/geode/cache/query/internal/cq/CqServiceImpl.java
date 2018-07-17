@@ -38,7 +38,7 @@ import org.apache.geode.cache.Operation;
 import org.apache.geode.cache.RegionEvent;
 import org.apache.geode.cache.TimeoutException;
 import org.apache.geode.cache.client.Pool;
-import org.apache.geode.cache.client.internal.GetEventValueOp;
+import org.apache.geode.cache.client.internal.operations.GetEventValueOp;
 import org.apache.geode.cache.client.internal.InternalPool;
 import org.apache.geode.cache.client.internal.QueueManager;
 import org.apache.geode.cache.client.internal.ServerCQProxyImpl;

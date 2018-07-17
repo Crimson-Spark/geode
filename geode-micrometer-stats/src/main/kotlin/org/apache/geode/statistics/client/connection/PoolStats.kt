@@ -27,7 +27,7 @@ class PoolStats(val poolName: String) : MicrometerMeterGroup("PoolStats") {
     private val loadConditioningExtensionCountMeter = CounterStatisticMeter("pool.connection.extension.loadconditioning", "Total number of times a connection's load conditioning has been extended because the servers are still balanced.")
     private val connectionWaitInProgressMeter = GaugeStatisticMeter("pool.connection.wait.inprogress", "Current number of threads waiting for a connection")
     private val connectionWaitMeter = CounterStatisticMeter("pool.connection.wait.count", "Total number of times a thread completed waiting for a connection (by timing out or by getting a connection).")
-    private val connectionWaitTimeMeter = TimerStatisticMeter("pool.connection.wait.time", "Total number of nanoseconds spent waiting for a connection.", "nanoseconds")
+    private val connectionWaitTimeMeter = TimerStatisticMeter("pool.connection.wait.time", "Total number of nanoseconds spent waiting for a connection.", unit = "nanoseconds")
     private val clientOpsInProgressMeter = GaugeStatisticMeter("pool.connection.ops.inprogress", "Current number of clientOps being executed")
     private val clientOpSendsInProgressMeter = GaugeStatisticMeter("pool.connection.ops.sends.inprogress", "Current number of clientOp sends being executed")
     private val clientOpSendsCountMeter = CounterStatisticMeter("pool.connection.ops.sends.count", "Total number of clientOp sends that have completed successfully")
@@ -35,8 +35,8 @@ class PoolStats(val poolName: String) : MicrometerMeterGroup("PoolStats") {
     private val clientOpSuccessMeter = CounterStatisticMeter("pool.connection.ops.success", "Total number of clientOps completed successfully")
     private val clientOpFailureMeter = CounterStatisticMeter("pool.connection.ops.failure", "Total number of clientOp attempts that have failed")
     private val clientOpTimeoutMeter = CounterStatisticMeter("pool.connection.ops.timeout", "Total number of clientOp attempts that have timed out")
-    private val clientOpSendTimeMeter = TimerStatisticMeter("pool.connection.ops.sends.time", "Total amount of time, in nanoseconds spent doing clientOp sends", "nanoseconds")
-    private val clientOpTimeMeter = TimerStatisticMeter("pool.connection.ops.time", "Total amount of time, in nanoseconds spent doing clientOps", "nanoseconds")
+    private val clientOpSendTimeMeter = TimerStatisticMeter("pool.connection.ops.sends.time", "Total amount of time, in nanoseconds spent doing clientOp sends", unit = "nanoseconds")
+    private val clientOpTimeMeter = TimerStatisticMeter("pool.connection.ops.time", "Total amount of time, in nanoseconds spent doing clientOps", unit = "nanoseconds")
 
     override fun initializeStaticMeters() {
         registerMeter(initialContactsMeter)

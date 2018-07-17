@@ -20,7 +20,7 @@ import java.util.concurrent.Executor;
 
 import javax.transaction.Status;
 
-import org.apache.geode.cache.client.internal.TXSynchronizationOp.CompletionType;
+import org.apache.geode.cache.client.internal.operations.TXSynchronizationOp.CompletionType;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.distributed.internal.ReplyException;
 import org.apache.geode.distributed.internal.membership.InternalDistributedMember;

@@ -17,7 +17,7 @@ package org.apache.geode.internal.cache.tier.sockets.command;
 import java.io.IOException;
 
 import org.apache.geode.cache.Region;
-import org.apache.geode.cache.client.internal.GetOp;
+import org.apache.geode.cache.client.internal.operations.GetOp;
 import org.apache.geode.cache.operations.GetOperationContext;
 import org.apache.geode.cache.operations.internal.GetOperationContextImpl;
 import org.apache.geode.distributed.internal.DistributionStats;

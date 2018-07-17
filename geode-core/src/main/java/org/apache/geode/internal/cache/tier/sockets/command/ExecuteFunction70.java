@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.geode.cache.client.internal.ExecuteFunctionOp;
+import org.apache.geode.cache.client.internal.operations.ExecuteFunctionOp;
 import org.apache.geode.cache.execute.Execution;
 import org.apache.geode.cache.execute.Function;
 import org.apache.geode.cache.execute.internal.FunctionServiceManager;

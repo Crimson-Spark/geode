@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.CancelException;
 import org.apache.geode.cache.client.internal.PoolImpl.PoolTask;
+import org.apache.geode.cache.client.internal.operations.RegisterDataSerializersOp;
 import org.apache.geode.internal.InternalDataSerializer;
 import org.apache.geode.internal.InternalDataSerializer.SerializerAttributesHolder;
 import org.apache.geode.internal.cache.EventID;

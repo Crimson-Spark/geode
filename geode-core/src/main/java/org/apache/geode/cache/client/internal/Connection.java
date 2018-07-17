@@ -22,6 +22,7 @@ import java.nio.ByteBuffer;
 
 import org.apache.geode.distributed.internal.ServerLocation;
 import org.apache.geode.internal.cache.tier.sockets.ServerQueueStatus;
+import org.apache.geode.statistics.client.connection.ConnectionStats;
 
 /**
  * Represents a connection from a client to a server. Instances are created, kept, and used by
@@ -35,6 +36,8 @@ public interface Connection {
   Socket getSocket();
 
   ByteBuffer getCommBuffer() throws SocketException;
+
+  ConnectionStats getStats();
 
   /**
    * Forcefully close the resources used by this connection. This should be called if the connection
@@ -80,4 +83,8 @@ public interface Connection {
   void setConnectionID(long id);
 
   long getConnectionID();
+
+  byte[] encryptBytes(byte[] messageBytes) throws Exception;
+
+  byte[] decryptBytes(byte[] messageBytes) throws Exception;
 }

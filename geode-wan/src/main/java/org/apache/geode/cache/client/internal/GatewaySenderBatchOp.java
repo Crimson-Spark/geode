@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.InternalGemFireError;
 import org.apache.geode.cache.client.ServerOperationException;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
 import org.apache.geode.internal.Version;
 import org.apache.geode.internal.cache.EventID;
 import org.apache.geode.internal.cache.tier.MessageType;

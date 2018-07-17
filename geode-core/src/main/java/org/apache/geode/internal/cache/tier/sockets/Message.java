@@ -41,6 +41,7 @@ import org.apache.geode.internal.logging.log4j.LocalizedMessage;
 import org.apache.geode.internal.offheap.StoredObject;
 import org.apache.geode.internal.offheap.annotations.Unretained;
 import org.apache.geode.internal.util.BlobHelper;
+import org.apache.geode.statistics.client.connection.MessageStats;
 
 /**
  * This class encapsulates the wire protocol. It provides accessors to encode and decode a message

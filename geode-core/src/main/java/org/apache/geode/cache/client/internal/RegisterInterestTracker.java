@@ -24,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.InternalGemFireError;
 import org.apache.geode.cache.InterestResultPolicy;
+import org.apache.geode.cache.client.internal.operations.UnregisterInterestOp;
 import org.apache.geode.cache.query.internal.cq.InternalCqQuery;
 import org.apache.geode.internal.cache.LocalRegion;
 import org.apache.geode.internal.cache.tier.InterestType;

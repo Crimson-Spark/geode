@@ -20,6 +20,7 @@ import java.util.List;
 import org.apache.geode.InternalGemFireError;
 import org.apache.geode.cache.client.ServerOperationException;
 import org.apache.geode.cache.client.internal.CreateCQOp.CreateCQOpImpl;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
 import org.apache.geode.internal.Version;
 import org.apache.geode.internal.cache.tier.MessageType;
 import org.apache.geode.internal.cache.tier.sockets.ChunkedMessage;

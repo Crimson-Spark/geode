@@ -29,9 +29,11 @@ import org.apache.logging.log4j.Logger;
 import org.apache.geode.CancelCriterion;
 import org.apache.geode.CancelException;
 import org.apache.geode.ForcedDisconnectException;
-import org.apache.geode.cache.client.internal.ExecuteFunctionOp.ExecuteFunctionOpImpl;
-import org.apache.geode.cache.client.internal.ExecuteRegionFunctionOp.ExecuteRegionFunctionOpImpl;
-import org.apache.geode.cache.client.internal.ExecuteRegionFunctionSingleHopOp.ExecuteRegionFunctionSingleHopOpImpl;
+import org.apache.geode.cache.client.internal.operations.ExecuteFunctionOp.ExecuteFunctionOpImpl;
+import org.apache.geode.cache.client.internal.operations.ExecuteRegionFunctionOp.ExecuteRegionFunctionOpImpl;
+import org.apache.geode.cache.client.internal.operations.ExecuteRegionFunctionSingleHopOp.ExecuteRegionFunctionSingleHopOpImpl;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
+import org.apache.geode.cache.client.internal.operations.CloseConnectionOp;
 import org.apache.geode.cache.wan.GatewaySender;
 import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
@@ -44,6 +46,7 @@ import org.apache.geode.internal.i18n.LocalizedStrings;
 import org.apache.geode.internal.logging.LogService;
 import org.apache.geode.internal.logging.log4j.LocalizedMessage;
 import org.apache.geode.internal.net.SocketCreator;
+import org.apache.geode.statistics.client.connection.ConnectionStats;
 
 /**
  * A single client to server connection.
@@ -235,6 +238,11 @@ public class ConnectionImpl implements Connection {
     return in;
   }
 
+
+  public ConnectionStats getStats() {
+    return endpoint.getStats();
+  }
+
   @Override
   public String toString() {
     return "Connection[" + endpoint + "]@" + this.hashCode();
@@ -258,7 +266,8 @@ public class ConnectionImpl implements Connection {
       return result;
     }
     synchronized (this) {
-      if (op instanceof ExecuteFunctionOpImpl || op instanceof ExecuteRegionFunctionOpImpl
+      if (op instanceof ExecuteFunctionOpImpl
+          || op instanceof ExecuteRegionFunctionOpImpl
           || op instanceof ExecuteRegionFunctionSingleHopOpImpl) {
         int earliertimeout = this.getSocket().getSoTimeout();
         this.getSocket().setSoTimeout(getClientFunctionTimeout());
@@ -301,11 +310,13 @@ public class ConnectionImpl implements Connection {
     return this.connectionID;
   }
 
-  protected byte[] encryptBytes(byte[] messageBytes) throws Exception {
+  @Override
+  public byte[] encryptBytes(byte[] messageBytes) throws Exception {
     return handshake.getEncryptor().encryptBytes(messageBytes);
   }
 
-  protected byte[] decryptBytes(byte[] messageBytes) throws Exception {
+  @Override
+  public byte[] decryptBytes(byte[] messageBytes) throws Exception {
     return handshake.getEncryptor().decryptBytes(messageBytes);
   }
 

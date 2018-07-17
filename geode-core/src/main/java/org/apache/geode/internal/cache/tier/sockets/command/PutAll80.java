@@ -22,7 +22,7 @@ import java.util.Map;
 import org.apache.geode.cache.DynamicRegionFactory;
 import org.apache.geode.cache.RegionDestroyedException;
 import org.apache.geode.cache.ResourceException;
-import org.apache.geode.cache.client.internal.PutAllOp;
+import org.apache.geode.cache.client.internal.operations.PutAllOp;
 import org.apache.geode.cache.operations.PutAllOperationContext;
 import org.apache.geode.cache.operations.internal.UpdateOnlyMap;
 import org.apache.geode.distributed.internal.DistributionStats;

@@ -15,6 +15,7 @@
 package org.apache.geode.cache.client.internal;
 
 import org.apache.geode.cache.client.internal.CreateCQOp.CreateCQOpImpl;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
 import org.apache.geode.internal.cache.tier.MessageType;
 
 /**

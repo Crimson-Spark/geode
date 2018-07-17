@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import org.apache.geode.cache.DynamicRegionFactory;
 import org.apache.geode.cache.RegionDestroyedException;
 import org.apache.geode.cache.ResourceException;
-import org.apache.geode.cache.client.internal.PutAllOp;
+import org.apache.geode.cache.client.internal.operations.PutAllOp;
 import org.apache.geode.cache.operations.RemoveAllOperationContext;
 import org.apache.geode.distributed.internal.DistributionStats;
 import org.apache.geode.internal.cache.EventID;

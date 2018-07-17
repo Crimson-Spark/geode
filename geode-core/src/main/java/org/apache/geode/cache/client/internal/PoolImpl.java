@@ -43,6 +43,8 @@ import org.apache.geode.cache.RegionService;
 import org.apache.geode.cache.client.Pool;
 import org.apache.geode.cache.client.ServerConnectivityException;
 import org.apache.geode.cache.client.SubscriptionNotEnabledException;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
+import org.apache.geode.cache.client.internal.operations.AuthenticateUserOp;
 import org.apache.geode.cache.client.internal.pooling.ConnectionManager;
 import org.apache.geode.cache.client.internal.pooling.ConnectionManagerImpl;
 import org.apache.geode.cache.query.QueryService;

@@ -36,6 +36,8 @@ import org.apache.geode.cache.FixedPartitionResolver;
 import org.apache.geode.cache.Operation;
 import org.apache.geode.cache.PartitionResolver;
 import org.apache.geode.cache.Region;
+import org.apache.geode.cache.client.internal.operations.GetClientPRMetaDataOp;
+import org.apache.geode.cache.client.internal.operations.GetClientPartitionAttributesOp;
 import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.distributed.internal.ServerLocation;
 import org.apache.geode.internal.cache.BucketServerLocation66;

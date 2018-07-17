@@ -26,6 +26,7 @@ import org.apache.geode.GemFireConfigException;
 import org.apache.geode.cache.GatewayConfigurationException;
 import org.apache.geode.cache.client.ServerRefusedConnectionException;
 import org.apache.geode.cache.client.internal.ServerBlackList.FailureTracker;
+import org.apache.geode.cache.client.internal.operations.AuthenticateUserOp;
 import org.apache.geode.cache.wan.GatewaySender;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.distributed.internal.ServerLocation;

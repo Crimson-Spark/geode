@@ -24,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.cache.client.internal.EndpointManager.EndpointListenerAdapter;
 import org.apache.geode.cache.client.internal.PoolImpl.PoolTask;
+import org.apache.geode.cache.client.internal.operations.PingOp;
 import org.apache.geode.internal.cache.GemFireCacheImpl;
 import org.apache.geode.internal.cache.InternalCache;
 import org.apache.geode.internal.logging.LogService;

@@ -46,7 +46,7 @@ import org.apache.geode.CancelException;
 import org.apache.geode.DataSerializer;
 import org.apache.geode.SystemFailure;
 import org.apache.geode.cache.UnsupportedVersionException;
-import org.apache.geode.cache.client.internal.AbstractOp;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
 import org.apache.geode.cache.client.internal.Connection;
 import org.apache.geode.distributed.DistributedSystem;
 import org.apache.geode.internal.Assert;

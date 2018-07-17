@@ -25,6 +25,7 @@ import org.apache.geode.cache.CacheClosedException;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.RegionService;
 import org.apache.geode.cache.client.ClientCache;
+import org.apache.geode.cache.client.internal.operations.ProxyCacheCloseOp;
 import org.apache.geode.cache.query.QueryService;
 import org.apache.geode.cache.query.internal.ProxyQueryService;
 import org.apache.geode.distributed.internal.ServerLocation;

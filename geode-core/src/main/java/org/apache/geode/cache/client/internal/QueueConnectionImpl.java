@@ -29,6 +29,7 @@ import org.apache.geode.cache.client.internal.pooling.ConnectionDestroyedExcepti
 import org.apache.geode.distributed.internal.ServerLocation;
 import org.apache.geode.internal.cache.tier.sockets.ServerQueueStatus;
 import org.apache.geode.internal.logging.LogService;
+import org.apache.geode.statistics.client.connection.ConnectionStats;
 
 
 /**
@@ -159,6 +160,10 @@ public class QueueConnectionImpl implements Connection {
     return getConnection().getInputStream();
   }
 
+  public ConnectionStats getStats() {
+    return getEndpoint().getStats();
+  }
+
   public Object execute(Op op) throws Exception {
     return getConnection().execute(op);
   }
@@ -216,5 +221,15 @@ public class QueueConnectionImpl implements Connection {
 
   public long getConnectionID() {
     return ((Connection) this.clientToServerConn.get()).getConnectionID();
+  }
+
+  @Override
+  public byte[] encryptBytes(byte[] messageBytes) throws Exception {
+    throw new RuntimeException("Method not yet supported");
+  }
+
+  @Override
+  public byte[] decryptBytes(byte[] messageBytes) throws Exception {
+    throw new RuntimeException("Method not yet supported");
   }
 }

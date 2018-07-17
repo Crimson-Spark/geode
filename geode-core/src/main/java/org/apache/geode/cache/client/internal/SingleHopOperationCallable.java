@@ -17,8 +17,9 @@ package org.apache.geode.cache.client.internal;
 import java.util.concurrent.Callable;
 
 import org.apache.geode.cache.client.AllConnectionsInUseException;
-import org.apache.geode.cache.client.internal.ExecuteRegionFunctionOp.ExecuteRegionFunctionOpImpl;
-import org.apache.geode.cache.client.internal.ExecuteRegionFunctionSingleHopOp.ExecuteRegionFunctionSingleHopOpImpl;
+import org.apache.geode.cache.client.internal.operations.ExecuteRegionFunctionOp.ExecuteRegionFunctionOpImpl;
+import org.apache.geode.cache.client.internal.operations.ExecuteRegionFunctionSingleHopOp.ExecuteRegionFunctionSingleHopOpImpl;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
 import org.apache.geode.distributed.internal.ServerLocation;
 
 public class SingleHopOperationCallable implements Callable {

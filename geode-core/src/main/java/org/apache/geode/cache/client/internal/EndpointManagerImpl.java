@@ -30,10 +30,10 @@ import org.apache.geode.cache.client.PoolManager;
 import org.apache.geode.distributed.DistributedMember;
 import org.apache.geode.distributed.DistributedSystem;
 import org.apache.geode.distributed.internal.ServerLocation;
-import org.apache.geode.internal.cache.PoolStats;
 import org.apache.geode.internal.cache.tier.InternalClientMembership;
 import org.apache.geode.internal.logging.LogService;
-import org.apache.geode.internal.statistics.DummyStatisticsFactory;
+import org.apache.geode.statistics.client.connection.ConnectionStats;
+import org.apache.geode.statistics.client.connection.PoolStats;
 
 public class EndpointManagerImpl implements EndpointManager {
   private static final Logger logger = LogService.getLogger();
@@ -182,11 +182,6 @@ public class EndpointManagerImpl implements EndpointManager {
    * @see org.apache.geode.cache.client.internal.EndpointManager#close()
    */
   public synchronized void close() {
-    for (Iterator<ConnectionStats> itr = statMap.values().iterator(); itr.hasNext();) {
-      ConnectionStats stats = itr.next();
-      stats.close();
-    }
-
     statMap.clear();
     endpointMap = Collections.emptyMap();
     listener.clear();
@@ -217,20 +212,7 @@ public class EndpointManagerImpl implements EndpointManager {
     ConnectionStats stats = statMap.get(location);
     if (stats == null) {
       String statName = poolName + "-" + location.toString();
-      PoolImpl pool = (PoolImpl) PoolManager.find(this.poolName);
-      if (pool != null) {
-        if (pool.getGatewaySender() != null) {
-          stats = new ConnectionStats(new DummyStatisticsFactory(), statName,
-              this.poolStats/* , this.gatewayStats */);
-        }
-      }
-      if (stats == null) {
-        stats =
-            new ConnectionStats(distributedSystem.getStatisticsFactory(), statName,
-                this.poolStats/*
-                               * , this.gatewayStats
-                               */);
-      }
+      stats = new ConnectionStats(statName,poolStats);
       statMap.put(location, stats);
     }
 

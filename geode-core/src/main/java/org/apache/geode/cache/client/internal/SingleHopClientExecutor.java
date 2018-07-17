@@ -34,7 +34,7 @@ import org.apache.geode.InternalGemFireException;
 import org.apache.geode.cache.CacheClosedException;
 import org.apache.geode.cache.client.ServerConnectivityException;
 import org.apache.geode.cache.client.ServerOperationException;
-import org.apache.geode.cache.client.internal.GetAllOp.GetAllOpImpl;
+import org.apache.geode.cache.client.internal.operations.GetAllOp.GetAllOpImpl;
 import org.apache.geode.cache.execute.FunctionException;
 import org.apache.geode.cache.execute.FunctionInvocationTargetException;
 import org.apache.geode.cache.execute.ResultCollector;

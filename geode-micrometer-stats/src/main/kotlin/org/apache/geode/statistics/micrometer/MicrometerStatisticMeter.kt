@@ -13,7 +13,10 @@ interface MicrometerStatisticMeter {
 
 data class GaugeStatisticMeter(val meterName: String,
                                val description: String,
+                               val tags:Array<String> = emptyArray(),
                                private val unit: String = "") : ScalarStatisticsMeter, MicrometerStatisticMeter {
+
+
 
     private lateinit var meter: Gauge
     private val backingValue: LongAdder = LongAdder()
@@ -38,10 +41,27 @@ data class GaugeStatisticMeter(val meterName: String,
         backingValue.reset()
         backingValue.add(value.toLong())
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as GaugeStatisticMeter
+
+        if (meterName != other.meterName) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return meterName.hashCode()
+    }
+
 }
 
 data class CounterStatisticMeter(val meterName: String,
                                  val description: String,
+                                 val tags:Array<String> = emptyArray(),
                                  private val unit: String = "") : ScalarStatisticsMeter, MicrometerStatisticMeter {
 
     private lateinit var meter: Counter
@@ -61,10 +81,28 @@ data class CounterStatisticMeter(val meterName: String,
     override fun decrement(double: Double) {
         meter.increment(double)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as CounterStatisticMeter
+
+        if (meterName != other.meterName) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return meterName.hashCode()
+    }
+
+
 }
 
 data class TimerStatisticMeter(val meterName: String,
                                val description: String,
+                               val tags:Array<String> = emptyArray(),
                                private val unit: String = "") : TimedStatisticsMeter, MicrometerStatisticMeter {
 
     private lateinit var meter: Timer
@@ -84,4 +122,20 @@ data class TimerStatisticMeter(val meterName: String,
     override fun recordValue(duration: Duration) {
         meter.record(duration)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as TimerStatisticMeter
+
+        if (meterName != other.meterName) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return meterName.hashCode()
+    }
+
 }

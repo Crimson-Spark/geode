@@ -19,7 +19,7 @@ import java.io.IOException;
 import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.PartitionResolver;
 import org.apache.geode.cache.Region;
-import org.apache.geode.cache.client.internal.GetClientPartitionAttributesOp;
+import org.apache.geode.cache.client.internal.operations.GetClientPartitionAttributesOp;
 import org.apache.geode.internal.cache.PartitionedRegion;
 import org.apache.geode.internal.cache.tier.Command;
 import org.apache.geode.internal.cache.tier.MessageType;

@@ -15,6 +15,8 @@
 package org.apache.geode.cache.client.internal;
 
 
+import org.apache.geode.cache.client.internal.operations.PingOp;
+import org.apache.geode.cache.client.internal.operations.QueryOp;
 import org.apache.geode.cache.query.SelectResults;
 import org.apache.geode.distributed.internal.ServerLocation;
 

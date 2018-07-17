@@ -14,7 +14,8 @@
  */
 package org.apache.geode.cache.client.internal;
 
-import org.apache.geode.cache.client.internal.QueryOp.QueryOpImpl;
+import org.apache.geode.cache.client.internal.operations.QueryOp.QueryOpImpl;
+import org.apache.geode.cache.client.internal.operations.AbstractOp;
 import org.apache.geode.cache.query.SelectResults;
 import org.apache.geode.internal.cache.tier.MessageType;
 

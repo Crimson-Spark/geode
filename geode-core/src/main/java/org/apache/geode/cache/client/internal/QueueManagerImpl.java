@@ -48,6 +48,8 @@ import org.apache.geode.cache.client.internal.RegisterInterestTracker.RegionInte
 import org.apache.geode.cache.client.internal.ServerBlackList.BlackListListener;
 import org.apache.geode.cache.client.internal.ServerBlackList.BlackListListenerAdapter;
 import org.apache.geode.cache.client.internal.ServerBlackList.FailureTracker;
+import org.apache.geode.cache.client.internal.operations.MakePrimaryOp;
+import org.apache.geode.cache.client.internal.operations.ReadyForEventsOp;
 import org.apache.geode.cache.query.internal.CqStateImpl;
 import org.apache.geode.cache.query.internal.DefaultQueryService;
 import org.apache.geode.cache.query.internal.cq.ClientCQ;

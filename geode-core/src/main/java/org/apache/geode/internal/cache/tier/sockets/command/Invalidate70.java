@@ -16,8 +16,8 @@ package org.apache.geode.internal.cache.tier.sockets.command;
 
 import java.io.IOException;
 
-import org.apache.geode.cache.client.internal.DestroyOp;
-import org.apache.geode.cache.client.internal.InvalidateOp;
+import org.apache.geode.cache.client.internal.operations.DestroyOp;
+import org.apache.geode.cache.client.internal.operations.InvalidateOp;
 import org.apache.geode.internal.cache.PartitionedRegion;
 import org.apache.geode.internal.cache.tier.Command;
 import org.apache.geode.internal.cache.tier.MessageType;

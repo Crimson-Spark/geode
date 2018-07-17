@@ -16,7 +16,7 @@ package org.apache.geode.internal.cache.tier.sockets.command;
 
 import java.io.IOException;
 
-import org.apache.geode.cache.client.internal.ContainsKeyOp;
+import org.apache.geode.cache.client.internal.operations.ContainsKeyOp;
 import org.apache.geode.distributed.internal.DistributionStats;
 import org.apache.geode.i18n.LogWriterI18n;
 import org.apache.geode.internal.cache.LocalRegion;

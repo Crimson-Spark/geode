@@ -18,9 +18,9 @@ import java.util.Set;
 
 import org.apache.geode.cache.client.Pool;
 import org.apache.geode.cache.client.ServerConnectivityException;
-import org.apache.geode.cache.client.internal.ExecuteFunctionNoAckOp;
-import org.apache.geode.cache.client.internal.ExecuteFunctionOp;
-import org.apache.geode.cache.client.internal.GetFunctionAttributeOp;
+import org.apache.geode.cache.client.internal.operations.ExecuteFunctionNoAckOp;
+import org.apache.geode.cache.client.internal.operations.ExecuteFunctionOp;
+import org.apache.geode.cache.client.internal.operations.GetFunctionAttributeOp;
 import org.apache.geode.cache.client.internal.PoolImpl;
 import org.apache.geode.cache.client.internal.ProxyCache;
 import org.apache.geode.cache.client.internal.UserAttributes;
