@@ -17,7 +17,7 @@ package org.apache.geode.internal.tcp;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionMessage;
 import org.apache.geode.distributed.internal.ReplyProcessor21;
 import org.apache.geode.internal.InternalDataSerializer;

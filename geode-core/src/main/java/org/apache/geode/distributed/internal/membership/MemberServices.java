@@ -16,7 +16,7 @@ package org.apache.geode.distributed.internal.membership;
 
 import java.net.InetAddress;
 
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.distributed.internal.LocatorStats;
 import org.apache.geode.distributed.internal.membership.gms.NetLocator;

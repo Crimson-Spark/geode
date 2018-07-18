@@ -35,6 +35,7 @@ import org.apache.geode.internal.i18n.LocalizedStrings;
 import org.apache.geode.internal.logging.LogService;
 import org.apache.geode.internal.logging.log4j.LocalizedMessage;
 import org.apache.geode.internal.security.AuthorizeRequestPP;
+import org.apache.geode.statistics.function.FunctionStats;
 
 public class ServerToClientFunctionResultSender implements ResultSender {
   private static final Logger logger = LogService.getLogger();

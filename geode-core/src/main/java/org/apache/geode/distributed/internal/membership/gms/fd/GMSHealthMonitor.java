@@ -60,7 +60,7 @@ import org.apache.geode.CancelException;
 import org.apache.geode.GemFireConfigException;
 import org.apache.geode.SystemConnectException;
 import org.apache.geode.distributed.DistributedMember;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionMessage;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.distributed.internal.membership.InternalDistributedMember;

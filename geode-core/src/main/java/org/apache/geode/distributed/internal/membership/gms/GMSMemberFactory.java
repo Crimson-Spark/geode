@@ -19,7 +19,7 @@ import java.net.UnknownHostException;
 
 import org.apache.geode.GemFireConfigException;
 import org.apache.geode.SystemConnectException;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionConfig;
 import org.apache.geode.distributed.internal.DistributionException;
 import org.apache.geode.distributed.internal.LocatorStats;

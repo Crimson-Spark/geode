@@ -20,7 +20,7 @@ import org.apache.geode.CancelException;
 import org.apache.geode.admin.GemFireHealthConfig;
 import org.apache.geode.admin.MemberHealthConfig;
 import org.apache.geode.cache.CacheFactory;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionManager;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.internal.OSProcess;

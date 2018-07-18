@@ -22,7 +22,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 import org.apache.geode.SystemFailure;
 import org.apache.geode.distributed.DistributedMember;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionMessage;
 
 /**

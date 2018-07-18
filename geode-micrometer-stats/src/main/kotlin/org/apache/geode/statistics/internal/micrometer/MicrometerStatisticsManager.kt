@@ -1,4 +1,4 @@
-package org.apache.geode.statistics.micrometer
+package org.apache.geode.statistics.internal.micrometer
 
 import io.micrometer.core.instrument.Clock
 import io.micrometer.core.instrument.Meter

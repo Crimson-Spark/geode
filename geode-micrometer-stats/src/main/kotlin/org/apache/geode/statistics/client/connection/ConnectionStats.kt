@@ -1,8 +1,8 @@
 package org.apache.geode.statistics.client.connection
 
 import org.apache.geode.statistics.ScalarStatisticsMeter
-import org.apache.geode.statistics.micrometer.MicrometerMeterGroup
-import org.apache.geode.statistics.micrometer.TimerStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.MicrometerMeterGroup
+import org.apache.geode.statistics.internal.micrometer.TimerStatisticMeter
 
 class ConnectionStats : MicrometerMeterGroup, MessageStats {
     private val clientStats: ClientStats

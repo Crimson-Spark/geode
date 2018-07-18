@@ -30,7 +30,6 @@ import org.apache.geode.cache.client.internal.ClientMetadataService;
 import org.apache.geode.cache.client.internal.ConnectionImpl;
 import org.apache.geode.cache.client.internal.ExecutablePool;
 import org.apache.geode.cache.client.internal.PoolImpl;
-import org.apache.geode.cache.client.internal.SingleHopClientExecutor;
 import org.apache.geode.cache.client.internal.SingleHopOperationCallable;
 import org.apache.geode.cache.client.internal.UserAttributes;
 import org.apache.geode.cache.execute.Function;

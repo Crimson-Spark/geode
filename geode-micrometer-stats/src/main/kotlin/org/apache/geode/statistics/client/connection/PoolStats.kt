@@ -1,9 +1,9 @@
 package org.apache.geode.statistics.client.connection
 
-import org.apache.geode.statistics.micrometer.CounterStatisticMeter
-import org.apache.geode.statistics.micrometer.GaugeStatisticMeter
-import org.apache.geode.statistics.micrometer.MicrometerMeterGroup
-import org.apache.geode.statistics.micrometer.TimerStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.CounterStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.GaugeStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.MicrometerMeterGroup
+import org.apache.geode.statistics.internal.micrometer.TimerStatisticMeter
 
 class PoolStats(val poolName: String) : MicrometerMeterGroup("PoolStats") {
 

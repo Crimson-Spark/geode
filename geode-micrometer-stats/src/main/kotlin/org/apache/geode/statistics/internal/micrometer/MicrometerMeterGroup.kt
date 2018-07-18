@@ -1,9 +1,8 @@
-package org.apache.geode.statistics.micrometer
+package org.apache.geode.statistics.internal.micrometer
 
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.binder.MeterBinder
 import org.apache.geode.statistics.StatisticsMeterGroup
-import org.apache.geode.statistics.StatisticsMeter
 
 abstract class MicrometerMeterGroup(private val groupName: String) : StatisticsMeterGroup, MeterBinder {
     private val registeredMeters = mutableListOf<MicrometerStatisticMeter>()

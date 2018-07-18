@@ -23,7 +23,7 @@ import java.util.Set;
 import org.apache.logging.log4j.Logger;
 
 import org.apache.geode.InternalGemFireException;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionMessage;
 import org.apache.geode.distributed.internal.LonerDistributionManager.DummyDMStats;
 import org.apache.geode.distributed.internal.ReplySender;

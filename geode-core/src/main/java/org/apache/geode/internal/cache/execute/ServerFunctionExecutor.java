@@ -32,6 +32,7 @@ import org.apache.geode.cache.execute.ResultCollector;
 import org.apache.geode.internal.cache.TXManagerImpl;
 import org.apache.geode.internal.cache.execute.util.SynchronizedResultCollector;
 import org.apache.geode.internal.i18n.LocalizedStrings;
+import org.apache.geode.statistics.function.FunctionStats;
 
 public class ServerFunctionExecutor extends AbstractExecution {
 
@@ -141,7 +142,7 @@ public class ServerFunctionExecutor extends AbstractExecution {
     FunctionStats stats = FunctionStats.getFunctionStats(function.getId());
     try {
       validateExecution(function, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(true);
       ExecuteFunctionOp.execute(this.pool, function, this, args, memberMappedArg, this.allServers,
           hasResult, rc, this.isFnSerializationReqd, UserAttributes.userAttributes.get(), groups);
@@ -164,7 +165,7 @@ public class ServerFunctionExecutor extends AbstractExecution {
     FunctionStats stats = FunctionStats.getFunctionStats(functionId);
     try {
       validateExecution(null, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(true);
       ExecuteFunctionOp.execute(this.pool, functionId, this, args, memberMappedArg, this.allServers,
           hasResult, rc, this.isFnSerializationReqd, isHA, optimizeForWrite,
@@ -187,7 +188,7 @@ public class ServerFunctionExecutor extends AbstractExecution {
     FunctionStats stats = FunctionStats.getFunctionStats(function.getId());
     try {
       validateExecution(function, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(false);
       ExecuteFunctionNoAckOp.execute(this.pool, function, args, memberMappedArg, this.allServers,
           hasResult, this.isFnSerializationReqd, groups);
@@ -208,7 +209,7 @@ public class ServerFunctionExecutor extends AbstractExecution {
     FunctionStats stats = FunctionStats.getFunctionStats(functionId);
     try {
       validateExecution(null, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(false);
       ExecuteFunctionNoAckOp.execute(this.pool, functionId, args, memberMappedArg, this.allServers,
           hasResult, this.isFnSerializationReqd, isHA, optimizeForWrite, groups);

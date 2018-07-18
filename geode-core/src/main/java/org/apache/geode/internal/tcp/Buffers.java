@@ -20,7 +20,7 @@ import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.internal.Assert;
 
 public class Buffers {

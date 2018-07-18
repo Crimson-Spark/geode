@@ -88,6 +88,8 @@ import org.apache.geode.internal.tcp.Connection;
 import org.apache.geode.internal.tcp.ConnectionTable;
 import org.apache.geode.internal.tcp.ReenteredConnectException;
 import org.apache.geode.internal.util.concurrent.StoppableReentrantLock;
+import org.apache.geode.statistics.distributed.DMStats;
+import org.apache.geode.statistics.distributed.DistributionStats;
 
 /**
  * The <code>DistributionManager</code> uses a {@link MembershipManager} to distribute
@@ -143,55 +145,54 @@ public class ClusterDistributionManager implements DistributionManager {
       !Boolean.getBoolean("DistributionManager.singleSerialExecutor");
 
   private static final int MAX_WAITING_THREADS =
-      Integer.getInteger("DistributionManager.MAX_WAITING_THREADS", Integer.MAX_VALUE).intValue();
+      Integer.getInteger("DistributionManager.MAX_WAITING_THREADS", Integer.MAX_VALUE);
 
   private static final int MAX_PR_META_DATA_CLEANUP_THREADS =
-      Integer.getInteger("DistributionManager.MAX_PR_META_DATA_CLEANUP_THREADS", 1).intValue();
+      Integer.getInteger("DistributionManager.MAX_PR_META_DATA_CLEANUP_THREADS", 1);
 
   public static final int MAX_THREADS =
-      Integer.getInteger("DistributionManager.MAX_THREADS", 100).intValue();
+      Integer.getInteger("DistributionManager.MAX_THREADS", 100);
 
   private static final int MAX_PR_THREADS = Integer.getInteger("DistributionManager.MAX_PR_THREADS",
-      Math.max(Runtime.getRuntime().availableProcessors() * 4, 16)).intValue();
+      Math.max(Runtime.getRuntime().availableProcessors() * 4, 16));
 
   private static final int MAX_FE_THREADS = Integer.getInteger("DistributionManager.MAX_FE_THREADS",
-      Math.max(Runtime.getRuntime().availableProcessors() * 4, 16)).intValue();
+      Math.max(Runtime.getRuntime().availableProcessors() * 4, 16));
 
 
 
   private static final int INCOMING_QUEUE_LIMIT =
-      Integer.getInteger("DistributionManager.INCOMING_QUEUE_LIMIT", 80000).intValue();
+      Integer.getInteger("DistributionManager.INCOMING_QUEUE_LIMIT", 80000);
 
   /** Throttling based on the Queue byte size */
   private static final double THROTTLE_PERCENT = (double) (Integer
-      .getInteger("DistributionManager.SERIAL_QUEUE_THROTTLE_PERCENT", 75).intValue()) / 100;
+      .getInteger("DistributionManager.SERIAL_QUEUE_THROTTLE_PERCENT", 75)) / 100;
 
   static final int SERIAL_QUEUE_BYTE_LIMIT = Integer
-      .getInteger("DistributionManager.SERIAL_QUEUE_BYTE_LIMIT", (40 * (1024 * 1024))).intValue();
+      .getInteger("DistributionManager.SERIAL_QUEUE_BYTE_LIMIT", (40 * (1024 * 1024)));
 
   static final int SERIAL_QUEUE_THROTTLE =
       Integer.getInteger("DistributionManager.SERIAL_QUEUE_THROTTLE",
-          (int) (SERIAL_QUEUE_BYTE_LIMIT * THROTTLE_PERCENT)).intValue();
+          (int) (SERIAL_QUEUE_BYTE_LIMIT * THROTTLE_PERCENT));
 
   static final int TOTAL_SERIAL_QUEUE_BYTE_LIMIT =
-      Integer.getInteger("DistributionManager.TOTAL_SERIAL_QUEUE_BYTE_LIMIT", (80 * (1024 * 1024)))
-          .intValue();
+      Integer.getInteger("DistributionManager.TOTAL_SERIAL_QUEUE_BYTE_LIMIT", (80 * (1024 * 1024)));
 
   static final int TOTAL_SERIAL_QUEUE_THROTTLE =
       Integer.getInteger("DistributionManager.TOTAL_SERIAL_QUEUE_THROTTLE",
-          (int) (SERIAL_QUEUE_BYTE_LIMIT * THROTTLE_PERCENT)).intValue();
+          (int) (SERIAL_QUEUE_BYTE_LIMIT * THROTTLE_PERCENT));
 
   /** Throttling based on the Queue item size */
   static final int SERIAL_QUEUE_SIZE_LIMIT =
-      Integer.getInteger("DistributionManager.SERIAL_QUEUE_SIZE_LIMIT", 20000).intValue();
+      Integer.getInteger("DistributionManager.SERIAL_QUEUE_SIZE_LIMIT", 20000);
 
   static final int SERIAL_QUEUE_SIZE_THROTTLE =
       Integer.getInteger("DistributionManager.SERIAL_QUEUE_SIZE_THROTTLE",
-          (int) (SERIAL_QUEUE_SIZE_LIMIT * THROTTLE_PERCENT)).intValue();
+          (int) (SERIAL_QUEUE_SIZE_LIMIT * THROTTLE_PERCENT));
 
   /** Max number of serial Queue executors, in case of multi-serial-queue executor */
   static final int MAX_SERIAL_QUEUE_THREAD =
-      Integer.getInteger("DistributionManager.MAX_SERIAL_QUEUE_THREAD", 20).intValue();
+      Integer.getInteger("DistributionManager.MAX_SERIAL_QUEUE_THREAD", 20);
 
 
 

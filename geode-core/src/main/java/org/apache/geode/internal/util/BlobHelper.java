@@ -17,7 +17,7 @@ package org.apache.geode.internal.util;
 import java.io.IOException;
 
 import org.apache.geode.DataSerializer;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.InternalDistributedSystem;
 import org.apache.geode.internal.ByteArrayDataInput;
 import org.apache.geode.internal.DSCODE;

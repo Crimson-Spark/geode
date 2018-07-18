@@ -34,6 +34,7 @@ import org.apache.geode.internal.cache.TXStateProxyImpl;
 import org.apache.geode.internal.cache.execute.util.SynchronizedResultCollector;
 import org.apache.geode.internal.i18n.LocalizedStrings;
 import org.apache.geode.internal.logging.LogService;
+import org.apache.geode.statistics.function.FunctionStats;
 
 /**
  * Executes Function with FunctionService#onRegion(Region region) in client server mode.
@@ -199,10 +200,10 @@ public class ServerRegionFunctionExecutor extends AbstractExecution {
   private ResultCollector executeOnServer(Function function, ResultCollector collector,
       byte hasResult) throws FunctionException {
     ServerRegionProxy srp = getServerRegionProxy();
-    FunctionStats stats = FunctionStats.getFunctionStats(function.getId(), this.region.getSystem());
+    FunctionStats stats = FunctionStats.getFunctionStats(function.getId());
     try {
       validateExecution(function, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(true);
       srp.executeFunction(this.region.getFullPath(), function, this, collector, hasResult, false);
       stats.endFunctionExecution(start, true);
@@ -220,10 +221,10 @@ public class ServerRegionFunctionExecutor extends AbstractExecution {
       byte hasResult, boolean isHA, boolean optimizeForWrite) throws FunctionException {
 
     ServerRegionProxy srp = getServerRegionProxy();
-    FunctionStats stats = FunctionStats.getFunctionStats(functionId, this.region.getSystem());
+    FunctionStats stats = FunctionStats.getFunctionStats(functionId);
     try {
       validateExecution(null, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(true);
       srp.executeFunction(this.region.getFullPath(), functionId, this, collector, hasResult, isHA,
           optimizeForWrite, false);
@@ -241,10 +242,10 @@ public class ServerRegionFunctionExecutor extends AbstractExecution {
 
   private void executeOnServerNoAck(Function function, byte hasResult) throws FunctionException {
     ServerRegionProxy srp = getServerRegionProxy();
-    FunctionStats stats = FunctionStats.getFunctionStats(function.getId(), this.region.getSystem());
+    FunctionStats stats = FunctionStats.getFunctionStats(function.getId());
     try {
       validateExecution(function, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(false);
       srp.executeFunctionNoAck(this.region.getFullPath(), function, this, hasResult, false);
       stats.endFunctionExecution(start, false);
@@ -260,10 +261,10 @@ public class ServerRegionFunctionExecutor extends AbstractExecution {
   private void executeOnServerNoAck(String functionId, byte hasResult, boolean isHA,
       boolean optimizeForWrite) throws FunctionException {
     ServerRegionProxy srp = getServerRegionProxy();
-    FunctionStats stats = FunctionStats.getFunctionStats(functionId, this.region.getSystem());
+    FunctionStats stats = FunctionStats.getFunctionStats(functionId);
     try {
       validateExecution(null, null);
-      long start = stats.startTime();
+      long start = System.nanoTime();
       stats.startFunctionExecution(false);
       srp.executeFunctionNoAck(this.region.getFullPath(), functionId, this, hasResult, isHA,
           optimizeForWrite, false);
@@ -285,13 +286,10 @@ public class ServerRegionFunctionExecutor extends AbstractExecution {
       }
       return srp;
     } else {
-      StringBuilder message = new StringBuilder();
-      message.append(srp).append(": ");
-      message
-          .append(
-              "No available connection was found. Server Region Proxy is not available for this region ")
-          .append(region.getName());
-      throw new FunctionException(message.toString());
+      String message = String.valueOf(srp) + ": "
+          + "No available connection was found. Server Region Proxy is not available for this region "
+          + region.getName();
+      throw new FunctionException(message);
     }
   }
 
@@ -365,9 +363,9 @@ public class ServerRegionFunctionExecutor extends AbstractExecution {
         functionAttributes = (byte[]) obj;
         addFunctionAttributes(functionName, functionAttributes);
       }
-      boolean hasResult = ((functionAttributes[0] == 1) ? true : false);
-      boolean isHA = ((functionAttributes[1] == 1) ? true : false);
-      boolean optimizeForWrite = ((functionAttributes[2] == 1) ? true : false);
+      boolean hasResult = (functionAttributes[0] == 1);
+      boolean isHA = (functionAttributes[1] == 1);
+      boolean optimizeForWrite = (functionAttributes[2] == 1);
       return executeFunction(functionName, hasResult, isHA, optimizeForWrite);
     } else {
       return executeFunction(functionObject);

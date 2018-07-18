@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.apache.geode.cache.client.internal;
+package org.apache.geode.cache.client.internal.operations;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,6 +34,8 @@ import org.apache.geode.InternalGemFireException;
 import org.apache.geode.cache.CacheClosedException;
 import org.apache.geode.cache.client.ServerConnectivityException;
 import org.apache.geode.cache.client.ServerOperationException;
+import org.apache.geode.cache.client.internal.ClientMetadataService;
+import org.apache.geode.cache.client.internal.SingleHopOperationCallable;
 import org.apache.geode.cache.client.internal.operations.GetAllOp.GetAllOpImpl;
 import org.apache.geode.cache.execute.FunctionException;
 import org.apache.geode.cache.execute.FunctionInvocationTargetException;

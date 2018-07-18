@@ -28,7 +28,7 @@ import org.jgroups.protocols.pbcast.NAKACK2;
 import org.jgroups.protocols.pbcast.NakAckHeader2;
 import org.jgroups.stack.Protocol;
 
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.membership.gms.Services;
 
 /**

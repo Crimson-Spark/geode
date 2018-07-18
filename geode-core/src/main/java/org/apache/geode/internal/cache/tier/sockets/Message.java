@@ -484,7 +484,7 @@ public class Message {
     }
     if (this.readHeader) {
       if (this.messageStats != null) {
-        this.messageStats.decMessagesBeingReceived(len);
+        this.messageStats.incMessagesBeingReceived(-len);
       }
     }
     ByteBuffer buffer = getCommBuffer();

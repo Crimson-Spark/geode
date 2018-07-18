@@ -1,4 +1,4 @@
-package org.apache.geode.statistics.micrometer
+package org.apache.geode.statistics.internal.micrometer
 
 import io.micrometer.core.instrument.*
 import org.apache.geode.statistics.ScalarStatisticsMeter

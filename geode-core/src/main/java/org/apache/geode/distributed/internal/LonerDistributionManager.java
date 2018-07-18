@@ -55,6 +55,7 @@ import org.apache.geode.internal.cache.InternalCache;
 import org.apache.geode.internal.i18n.LocalizedStrings;
 import org.apache.geode.internal.logging.InternalLogWriter;
 import org.apache.geode.internal.net.SocketCreator;
+import org.apache.geode.statistics.distributed.DMStats;
 
 /**
  * A <code>LonerDistributionManager</code> is a dm that never communicates with anyone else.

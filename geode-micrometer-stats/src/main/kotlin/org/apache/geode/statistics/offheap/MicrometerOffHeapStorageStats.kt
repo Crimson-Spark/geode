@@ -1,9 +1,9 @@
 package org.apache.geode.statistics.offheap
 
-import org.apache.geode.statistics.micrometer.CounterStatisticMeter
-import org.apache.geode.statistics.micrometer.GaugeStatisticMeter
-import org.apache.geode.statistics.micrometer.MicrometerMeterGroup
-import org.apache.geode.statistics.micrometer.TimerStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.CounterStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.GaugeStatisticMeter
+import org.apache.geode.statistics.internal.micrometer.MicrometerMeterGroup
+import org.apache.geode.statistics.internal.micrometer.TimerStatisticMeter
 import java.util.concurrent.TimeUnit
 
 class MicrometerOffHeapStorageStats : MicrometerMeterGroup("OffHeapMemoryStats"), OffHeapStorageStats {
@@ -19,15 +19,15 @@ class MicrometerOffHeapStorageStats : MicrometerMeterGroup("OffHeapMemoryStats")
         private const val maxMemoryDesc = "The maximum amount of off-heap memory, in bytes. This is the amount of memory allocated at startup and does not change."
     }
 
-    private val freeMemoryMeter = GaugeStatisticMeter("offheap.free.memory", freeMemoryDesc, "bytes")
-    private val maxMemoryMeter = GaugeStatisticMeter("offheap.max.memory", maxMemoryDesc, "bytes")
-    private val usedMemoryMeter = GaugeStatisticMeter("offheap.used.memory", usedMemoryDesc, "bytes")
+    private val freeMemoryMeter = GaugeStatisticMeter("offheap.free.memory", freeMemoryDesc, unit="bytes")
+    private val maxMemoryMeter = GaugeStatisticMeter("offheap.max.memory", maxMemoryDesc, unit="bytes")
+    private val usedMemoryMeter = GaugeStatisticMeter("offheap.used.memory", usedMemoryDesc, unit="bytes")
     private val objectReadMeter = CounterStatisticMeter("offheap.object.reads", readsDesc)
     private val objectsStoredMeter = GaugeStatisticMeter("offheap.object.stored", objectsDesc)
-    private val fragmentationPercentageMeter = GaugeStatisticMeter("offheap.fragments.percentage", fragmentationDesc, "percentage")
+    private val fragmentationPercentageMeter = GaugeStatisticMeter("offheap.fragments.percentage", fragmentationDesc, unit="percentage")
     private val fragmentCountMeter = GaugeStatisticMeter("offheap.fragments.count", fragmentsDesc)
-    private val largestFragmentMeter = GaugeStatisticMeter("offheap.fragments.max", largestFragmentDesc, "bytes")
-    private val defragmentationTimeTimer = TimerStatisticMeter("offheap.defragmentation.time", defragmentationTimeDesc, "nanoseconds")
+    private val largestFragmentMeter = GaugeStatisticMeter("offheap.fragments.max", largestFragmentDesc, unit="bytes")
+    private val defragmentationTimeTimer = TimerStatisticMeter("offheap.defragmentation.time", defragmentationTimeDesc, unit="nanoseconds")
 
     override fun initializeStaticMeters() {
         registerMeter(freeMemoryMeter)

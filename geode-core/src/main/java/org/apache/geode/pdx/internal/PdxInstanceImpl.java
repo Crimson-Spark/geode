@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
 
 import org.apache.geode.InternalGemFireException;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.internal.ClassPathLoader;
 import org.apache.geode.internal.DSCODE;
 import org.apache.geode.internal.InternalDataSerializer;

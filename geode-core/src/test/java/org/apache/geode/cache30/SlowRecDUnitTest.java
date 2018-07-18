@@ -43,7 +43,7 @@ import org.apache.geode.cache.Region.Entry;
 import org.apache.geode.cache.RegionEvent;
 import org.apache.geode.cache.Scope;
 import org.apache.geode.cache.util.CacheListenerAdapter;
-import org.apache.geode.distributed.internal.DMStats;
+import org.apache.geode.statistics.distributed.DMStats;
 import org.apache.geode.distributed.internal.DistributionManager;
 import org.apache.geode.internal.tcp.Connection;
 import org.apache.geode.test.dunit.Host;

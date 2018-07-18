@@ -90,7 +90,6 @@ import org.apache.geode.internal.logging.log4j.LocalizedMessage;
 import org.apache.geode.internal.logging.log4j.LogWriterAppender;
 import org.apache.geode.internal.logging.log4j.LogWriterAppenders;
 import org.apache.geode.internal.net.SocketCreatorFactory;
-import org.apache.geode.internal.offheap.MemoryAllocator;
 import org.apache.geode.internal.offheap.OffHeapStorage;
 import org.apache.geode.internal.security.SecurityService;
 import org.apache.geode.internal.security.SecurityServiceFactory;
@@ -100,8 +99,10 @@ import org.apache.geode.management.ManagementException;
 import org.apache.geode.security.GemFireSecurityException;
 import org.apache.geode.security.PostProcessor;
 import org.apache.geode.security.SecurityManager;
+import org.apache.geode.statistics.InternalDistributedSystemStats;
 import org.apache.geode.statistics.StatisticsManager;
-import org.apache.geode.statistics.micrometer.MicrometerStatisticsManager;
+import org.apache.geode.statistics.distributed.DMStats;
+import org.apache.geode.statistics.internal.micrometer.MicrometerStatisticsManager;
 
 /**
  * The concrete implementation of {@link DistributedSystem} that provides internal-only
@@ -144,9 +145,13 @@ public class InternalDistributedSystem extends DistributedSystem {
       new AtomicReference<CreationStackGenerator>(DEFAULT_CREATION_STACK_GENERATOR);
 
   /**
-   * The IDS StatiticsManager, StatisticsFactory and OsStatsFactory
+   * The StatisticsManager
    */
   private final StatisticsManager statisticsManager;
+  /**
+   * The IDS stats
+   */
+  private final InternalDistributedSystemStats internalDistributedSystemStats;
 
   /**
    * The distribution manager that is used to communicate with the distributed system.
@@ -520,6 +525,7 @@ public class InternalDistributedSystem extends DistributedSystem {
 
     this.statisticsManager =
         new MicrometerStatisticsManager(this.statsDisabled, originalConfig.getName());
+    this.internalDistributedSystemStats = new InternalDistributedSystemStats();
   }
 
   //////////////////// Instance Methods ////////////////////

@@ -293,7 +293,7 @@ public class InternalDistributedSystemStats
   public FunctionStats getFunctionStats(String textId) {
     FunctionStats stats = functionExecutionStatsMap.get(textId);
     if (stats == null) {
-      stats = new FunctionStats(this, textId);
+      stats = new FunctionStats(textId);
       FunctionStats oldStats = functionExecutionStatsMap.putIfAbsent(textId, stats);
       if (oldStats != null) {
         stats.close();
