@@ -243,7 +243,8 @@ public class HAEventWrapper implements Conflatable, DataSerializableFixedID, Siz
   public String toString() {
     if (this.clientUpdateMessage != null) {
       return "HAEventWrapper[refCount=" + getReferenceCount() + "; putInProgress="
-          + putInProgressCountUpdater.get(this) + "; msg=" + this.clientUpdateMessage + "]";
+          + putInProgressCountUpdater.get(this) + "; msg=" + this.clientUpdateMessage
+          + " clientCqs=" + this.getClientCqs() + "]";
     } else {
       return "HAEventWrapper[region=" + this.regionName + "; key=" + this.keyOfInterest
           + "; refCount=" + getReferenceCount()
@@ -254,6 +255,7 @@ public class HAEventWrapper implements Conflatable, DataSerializableFixedID, Siz
               : ("; op=" + this.clientUpdateMessage.getOperation()))
           + ((this.clientUpdateMessage == null) ? ""
               : ("; version=" + this.clientUpdateMessage.getVersionTag()))
+          + " clientCqs=" + this.getClientCqs()
           + "]";
     }
   }
