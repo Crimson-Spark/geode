@@ -9,8 +9,14 @@ interface StatisticsMeter {
 }
 
 interface ScalarStatisticsMeter : StatisticsMeter {
+    fun increment()
     fun increment(value: Double = 1.0)
+    fun increment(value: Long = 1L)
+    fun increment(value: Int = 1)
+    fun decrement()
     fun decrement(value: Double = -1.0)
+    fun decrement(value: Long = -1L)
+    fun decrement(value: Int = -1)
 }
 
 interface TimedStatisticsMeter : StatisticsMeter {

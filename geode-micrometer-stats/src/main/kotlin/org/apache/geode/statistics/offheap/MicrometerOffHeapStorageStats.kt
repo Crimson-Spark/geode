@@ -62,11 +62,11 @@ class MicrometerOffHeapStorageStats : MicrometerMeterGroup("OffHeapMemoryStats")
     }
 
     override fun setFragments(value: Long) {
-        fragmentCountMeter.overrideValue(value.toDouble())
+        fragmentCountMeter.setValue(value.toDouble())
     }
 
     override fun setLargestFragment(value: Int) {
-        largestFragmentMeter.overrideValue(value.toDouble())
+        largestFragmentMeter.setValue(value.toDouble())
     }
 
     override fun incDefragmentationTime(value: Long, timeUnit: TimeUnit) {
@@ -74,6 +74,6 @@ class MicrometerOffHeapStorageStats : MicrometerMeterGroup("OffHeapMemoryStats")
     }
 
     override fun setFragmentation(value: Int) {
-        fragmentationPercentageMeter.overrideValue(value.toDouble())
+        fragmentationPercentageMeter.setValue(value.toDouble())
     }
 }

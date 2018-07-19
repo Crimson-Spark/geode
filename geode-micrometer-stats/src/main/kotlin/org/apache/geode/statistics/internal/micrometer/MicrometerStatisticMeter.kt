@@ -29,15 +29,49 @@ data class GaugeStatisticMeter(val meterName: String,
                 .description(description).baseUnit(unit).tags(tags).register(registry)
     }
 
+    override fun increment() {
+        backingValue.increment()
+    }
+
     override fun increment(value: Double) {
         backingValue.add(value.toLong())
+    }
+
+    override fun increment(value: Long) {
+        backingValue.add(value)
+    }
+
+    override fun increment(value: Int) {
+        backingValue.add(value.toLong())
+    }
+
+    override fun decrement() {
+        backingValue.decrement()
     }
 
     override fun decrement(value: Double) {
         backingValue.add(value.toLong())
     }
 
-    fun overrideValue(value: Double) {
+    override fun decrement(value: Long) {
+        backingValue.add(value)
+    }
+
+    override fun decrement(value: Int) {
+        backingValue.add(value.toLong())
+    }
+
+    fun setValue(value: Double) {
+        backingValue.reset()
+        backingValue.add(value.toLong())
+    }
+
+    fun setValue(value: Long) {
+        backingValue.reset()
+        backingValue.add(value)
+    }
+
+    fun setValue(value: Int) {
         backingValue.reset()
         backingValue.add(value.toLong())
     }
@@ -74,12 +108,36 @@ data class CounterStatisticMeter(val meterName: String,
                 .description(description).tags(tags).baseUnit(unit).register(registry)
     }
 
-    override fun increment(double: Double) {
-        meter.increment(double)
+    override fun increment() {
+        meter.increment(1.0)
     }
 
-    override fun decrement(double: Double) {
-        meter.increment(double)
+    override fun increment(value: Double) {
+        meter.increment(value)
+    }
+
+    override fun increment(value: Long) {
+        meter.increment(value.toDouble())
+    }
+
+    override fun increment(value: Int) {
+        meter.increment(value.toDouble())
+    }
+
+    override fun decrement() {
+        throw RuntimeException("Decrementing is not supported on a Counter")
+    }
+
+    override fun decrement(value: Double) {
+        throw RuntimeException("Decrementing is not supported on a Counter")
+    }
+
+    override fun decrement(value: Long) {
+        throw RuntimeException("Decrementing is not supported on a Counter")
+    }
+
+    override fun decrement(value: Int) {
+        throw RuntimeException("Decrementing is not supported on a Counter")
     }
 
     override fun equals(other: Any?): Boolean {

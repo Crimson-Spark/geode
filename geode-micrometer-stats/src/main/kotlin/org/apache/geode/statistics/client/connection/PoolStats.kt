@@ -72,19 +72,19 @@ class PoolStats(val poolName: String) : MicrometerMeterGroup("PoolStats") {
     }
 
     fun setInitialContacts(value: Int) {
-        initialContactsMeter.overrideValue(value.toDouble())
+        initialContactsMeter.setValue(value.toDouble())
     }
 
     fun setServerCount(value: Int) {
-        serversDiscoveredMeter.overrideValue(value.toDouble())
+        serversDiscoveredMeter.setValue(value.toDouble())
     }
 
     fun setSubscriptionCount(value: Int) {
-        subscriptionServersMeter.overrideValue(value.toDouble())
+        subscriptionServersMeter.setValue(value.toDouble())
     }
 
     fun setLocatorCount(value: Int) {
-        locatorsDiscoveredMeter.overrideValue(value.toDouble())
+        locatorsDiscoveredMeter.setValue(value.toDouble())
     }
 
     fun incLocatorRequests() {

@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.2.60-eap-44"
+    kotlin("jvm") version "1.2.51"
 }
 
 group = "org.apache.geode"
